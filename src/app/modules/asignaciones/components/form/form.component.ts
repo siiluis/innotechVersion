@@ -8,7 +8,7 @@ import { IAsignaciones } from '../../models/asignaciones.model';
   styleUrls: ['./form.component.css'],
 })
 export class FormAddComponent implements OnInit {
-  btnAsignar = 'Sara';
+  btnAsignar = 'Asignar';
   asignaciones: IAsignaciones = {
     id_asignacion: 1,
     id_empleado: 1,
