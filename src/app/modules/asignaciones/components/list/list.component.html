@@ -1,1 +1,33 @@
-<p>list works!</p>
+<div class="tableContainer">
+  <h1>Equipos</h1>
+  <hr color="white" />
+  <table>
+    <tr>
+      <th>Ingreso</th>
+      <th>Serial</th>
+      <th>Empleado Asignado</th>
+      <th>Editar</th>
+      <th>Eliminar</th>
+    </tr>
+    <tr ng-repeat="item in inventario">
+      <!--     <td>{{item.date_save | date}}</td>
+      <td>{{item.serial}}</td>
+      <td>{{item.empleado}}</td> -->
+      <td>a</td>
+      <td>b</td>
+      <td>c</td>
+      <td>
+        <!--   ng-href="/inventarios/#!asignar_form/{{item.ID}}" -->
+        <a> <i class="fa fa-pencil-square" style="font-size: 25px"></i></a>
+      </td>
+      <td>
+        <i
+          class="fa fa-times-rectangle"
+          style="font-size: 25px; cursor: pointer; color: red"
+          ng-click="eliminar(item.ID)"
+        ></i>
+      </td>
+    </tr>
+  </table>
+</div>
+<!--  ng-click="eliminar(item.ID)" -->
