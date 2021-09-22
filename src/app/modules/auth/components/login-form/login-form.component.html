@@ -1,0 +1,59 @@
+<form [formGroup]="loginForm">
+  <div class="formAsignar">
+    <div style="text-align: center">
+      <h2 style="color: white; text-align: center">BIENVENIDO</h2>
+      <hr color="white" style="width: 50%" />
+    </div>
+
+    <div id="profile" style="text-align: center; padding: 15px">
+      <img src="assets/profile.png" style="height: 20%; width: 20%" alt="" />
+    </div>
+
+    <div id="formLogin">
+      <div class="inputForm">
+        <label for="email">Email:</label>
+        <input type="email" formControlName="email" name="email" id="name" />
+        <div class="inputErrors">
+          <span
+            *ngIf="
+              loginForm.controls.email.touched &&
+              loginForm.controls.email.errors?.required
+            "
+            >Email requerido.</span
+          >
+          <span *ngIf="loginForm.controls.email.errors?.email"
+            >Solo se permite Email.</span
+          >
+        </div>
+      </div>
+      <div class="inputForm">
+        <label for="password">Email:</label>
+        <input
+          type="password"
+          formControlName="password"
+          name="password"
+          id="password"
+        />
+        <div class="inputErrors">
+          <span
+            *ngIf="
+              loginForm.controls.password.touched &&
+              loginForm.controls.password.errors?.required
+            "
+            >password requerido.</span
+          >
+        </div>
+      </div>
+
+      <div class="inputForm" style="margin-top: 1em">
+        <button
+          id="btnFinalizar"
+          [disabled]="!loginForm.valid"
+          (click)="ingresar()"
+        >
+          Ingresar
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

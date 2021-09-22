@@ -1,0 +1,15 @@
+#app {
+  display: flex;
+  flex-direction: column;
+  padding: 2px;
+  row-gap: 1px;
+  height: auto;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  height: 900px;
+  background-color: #ffc872;
+  padding-bottom: 7em;
+}
