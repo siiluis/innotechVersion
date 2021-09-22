@@ -1,0 +1,180 @@
+<form>
+  <div class="formAsignar" style="background-color: #ffc872; text-align: left">
+    <!------->
+    <div style="text-align: center">
+      <h2 style="color: white; text-align: center">Asignar periférico</h2>
+      <hr color="white" style="width: 50%" />
+    </div>
+    <!------->
+    <div class="inputForm">
+      <label style="color: white" for="selectedTipo">Periférico 1:</label>
+      <select
+        name=""
+        id="selectedTipo"
+        class="selectForm"
+        style="width: 50%"
+        ng-init="asignacion.selected_tipo"
+        ng-model="asignacion.selected_tipo"
+        required
+      >
+        <option value="">Elige una opción</option>
+        <option value="1">Teclado</option>
+        <option value="2">Base</option>
+        <option value="3">Pantalla</option>
+        <option value="4">Mouse</option>
+        <option value="5">Cargador</option>
+      </select>
+    </div>
+    <!------->
+    <div class="inputForm">
+      <label style="color: white" for="serialNumber"
+        >Serial periférico 1:</label
+      >
+      <input
+        type="text"
+        id="serialNumber"
+        ng-model="asignacion.serial"
+        required
+      />
+    </div>
+    <!------->
+    <div class="inputForm">
+      <label style="color: white" for="selectedTipo">Periférico 2:</label>
+      <select
+        name=""
+        id="selectedTipo"
+        class="selectForm"
+        style="width: 50%"
+        ng-init="asignacion.selected_tipo"
+        ng-model="asignacion.selected_tipo"
+        required
+      >
+        <option value="">Elige una opción</option>
+        <option value="1">Teclado</option>
+        <option value="2">Base</option>
+        <option value="3">Pantalla</option>
+        <option value="4">Mouse</option>
+        <option value="5">Cargador</option>
+      </select>
+    </div>
+    <!------->
+    <div class="inputForm">
+      <label style="color: white" for="serialNumber"
+        >Serial periférico 2:</label
+      >
+      <input
+        type="text"
+        id="serialNumber"
+        ng-model="asignacion.serial"
+        required
+      />
+    </div>
+    <!------->
+    <div class="inputForm">
+      <label style="color: white" for="selectedTipo">Periférico 3:</label>
+      <select
+        name=""
+        id="selectedTipo"
+        class="selectForm"
+        style="width: 50%"
+        ng-init="asignacion.selected_tipo"
+        ng-model="asignacion.selected_tipo"
+        required
+      >
+        <option value="">Elige una opción</option>
+        <option value="1">Teclado</option>
+        <option value="2">Base</option>
+        <option value="3">Pantalla</option>
+        <option value="4">Mouse</option>
+        <option value="5">Cargador</option>
+      </select>
+    </div>
+    <!------->
+    <div class="inputForm">
+      <label style="color: white" for="serialNumber"
+        >Serial periférico 3:</label
+      >
+      <input
+        type="text"
+        id="serialNumber"
+        ng-model="asignacion.serial"
+        required
+      />
+    </div>
+    <!------->
+    <div class="inputForm">
+      <label style="color: white" for="selectedTipo">Periférico 4:</label>
+      <select
+        name=""
+        id="selectedTipo"
+        class="selectForm"
+        style="width: 50%"
+        ng-init="asignacion.selected_tipo"
+        ng-model="asignacion.selected_tipo"
+        required
+      >
+        <option value="">Elige una opción</option>
+        <option value="1">Teclado</option>
+        <option value="2">Base</option>
+        <option value="3">Pantalla</option>
+        <option value="4">Mouse</option>
+        <option value="5">Cargador</option>
+      </select>
+    </div>
+    <!------->
+    <div class="inputForm">
+      <label style="color: white" for="serialNumber"
+        >Serial periférico 4:</label
+      >
+      <input
+        type="text"
+        id="serialNumber"
+        ng-model="asignacion.serial"
+        required
+      />
+    </div>
+    <!------->
+    <div class="inputForm">
+      <label style="color: white" for="selectedTipo">Periférico 5:</label>
+      <select
+        name=""
+        id="selectedTipo"
+        class="selectForm"
+        style="width: 50%"
+        ng-init="asignacion.selected_tipo"
+        ng-model="asignacion.selected_tipo"
+        required
+      >
+        <option value="">Elige una opción</option>
+        <option value="1">Teclado</option>
+        <option value="2">Base</option>
+        <option value="3">Pantalla</option>
+        <option value="4">Mouse</option>
+        <option value="5">Cargador</option>
+      </select>
+    </div>
+    <!------->
+    <div class="inputForm">
+      <label style="color: white" for="serialNumber"
+        >Serial periférico 5:</label
+      >
+      <input
+        type="text"
+        id="serialNumber"
+        ng-model="asignacion.serial"
+        required
+      />
+    </div>
+    <!------->
+    <div style="text-align: center">
+      <button
+        id="btnFinalizar"
+        ng-disabled="form.$invalid"
+        ng-click="asignar()"
+      >
+        <!-- {{btnText}} -->
+      </button>
+    </div>
+    <!------>
+  </div>
+</form>

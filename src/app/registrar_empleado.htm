@@ -1,0 +1,70 @@
+<form class="formAsignar">
+  <div class="formAsignar" style="background-color: #ffc872; text-align: left">
+    <!------->
+    <div style="text-align: center">
+      <h2 style="color: white; text-align: center">Registrar Empleado</h2>
+      <hr color="white" style="width: 50%" />
+    </div>
+    <!------->
+    <div class="inputForm">
+      <label style="color: white" for="serialNumber">Nombre completo:</label>
+      <input
+        type="text"
+        id="serialNumber"
+        ng-model="asignacion.serial"
+        required
+      />
+    </div>
+    <!------->
+    <div class="inputForm">
+      <label style="color: white" for="serialNumber">Correo:</label>
+      <input
+        type="text"
+        id="serialNumber"
+        ng-model="asignacion.serial"
+        required
+      />
+    </div>
+    <!------->
+    <div class="inputForm">
+      <label style="color: white" for="serialNumber">Celular:</label>
+      <input
+        type="text"
+        id="serialNumber"
+        ng-model="asignacion.serial"
+        required
+      />
+    </div>
+    <!------->
+    <div class="inputForm">
+      <label style="color: white" for="serialNumber">Area:</label>
+      <input
+        type="text"
+        id="serialNumber"
+        ng-model="asignacion.serial"
+        required
+      />
+    </div>
+    <!------->
+    <div class="inputForm">
+      <label style="color: white" for="serialNumber">Cédula:</label>
+      <input
+        type="text"
+        id="serialNumber"
+        ng-model="asignacion.serial"
+        required
+      />
+    </div>
+    <!------->
+    <div style="text-align: center">
+      <button
+        id="btnFinalizar"
+        ng-disabled="form.$invalid"
+        ng-click="asignar()"
+      >
+        {{btnText}}
+      </button>
+    </div>
+    <!------>
+  </div>
+</form>
