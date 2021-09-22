@@ -28,53 +28,7 @@
     />
   </div>
   <!-- {{asignacion.serial}} -->
-  <div class="accesoriesCheckbox">
-    <div>
-      <label style="color: white" for="">CARGADOR </label>
-      <input
-        type="checkbox"
-        ng-model="asignacion.cargador"
-        ng-true-value="'1'"
-        ng-false-value="'0'"
-      />
-    </div>
-    <div>
-      <label style="color: white" for="">TECLADO </label>
-      <input
-        type="checkbox"
-        ng-model="asignacion.teclado"
-        ng-true-value="'1'"
-        ng-false-value="'0'"
-      />
-    </div>
-    <div>
-      <label style="color: white" for="">MOUSE </label>
-      <input
-        type="checkbox"
-        ng-model="asignacion.mouse "
-        ng-true-value="'1'"
-        ng-false-value="'0'"
-      />
-    </div>
-    <div>
-      <label style="color: white" for="">BASE </label>
-      <input
-        type="checkbox"
-        ng-model="asignacion.base"
-        ng-true-value="'1'"
-        ng-false-value="'0'"
-      />
-    </div>
-    <div>
-      <label style="color: white" for="">PANTALLA </label>
-      <input
-        type="checkbox"
-        ng-model="asignacion.pantalla"
-        ng-true-value="'1'"
-        ng-false-value="'0'"
-      />
-    </div>
-  </div>
+
   <div class="inputForm">
     <label for="licenciaSO">VERSION SO:</label>
     <input
@@ -175,7 +129,7 @@
   </div>
 
   <div class="inputForm" style="margin-top: 3em">
-    <button id="btnFinalizar" ng-disabled="form.$invalid" ng-click="asignar()">
+    <button id="btnFinalizar" (click)="add()">
       {{ btnText }}
     </button>
   </div>

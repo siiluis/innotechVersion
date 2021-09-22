@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { EquiposService } from '../../equipos.service';
 
-class Equipo {
-  
-}
+class Equipo {}
 @Component({
   selector: 'list-equipo',
   templateUrl: './list.component.html',
@@ -11,7 +10,9 @@ class Equipo {
 export class ListComponent implements OnInit {
   listEquipos = [];
 
-  constructor() {}
+  constructor(private equiposService: EquiposService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.equiposService.getEquipos();
+  }
 }
