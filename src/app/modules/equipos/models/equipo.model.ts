@@ -1,3 +1,5 @@
+import { Time } from "@angular/common";
+
 export interface IEquipo {
   tipoEquipo: string;
   serial: string;
@@ -8,4 +10,5 @@ export interface IEquipo {
   ram: string;
   disco: string;
   equipo_cpu: string;
+  fecha_creacion: Time;
 }
