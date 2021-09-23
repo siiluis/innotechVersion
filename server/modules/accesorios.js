@@ -1,12 +1,16 @@
 var express = require("express");
 var router = express.Router();
 
+const { querys } = require("../db/querys/querys");
+const { commands } = require("../db/commands/commands");
 const APP = "accesorios";
+const Response = require("../models/response");
+const SUCCESS = "SUCCESS";
 
 // Save
 router.post(`/`, (req, res) => {
   commands.saveItem(APP, req.body);
-  res.status(200).send("Guardado");
+  res.status(200).json(new Response(SUCCESS, "Guardado"));
 });
 
 // get all
@@ -26,7 +30,7 @@ router.get(`/:id`, async (req, res) => {
 // update
 router.put(`/`, (req, res) => {
   commands.updateItem(APP, req.body);
-  res.status(200).send("Guardado");
+  res.status(200).json(new Response(SUCCESS, "Actualizado"));
 });
 
 // delete

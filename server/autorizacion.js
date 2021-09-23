@@ -5,7 +5,6 @@ const middelwareAuth = express.Router();
 const key = "4546199cd28425b99f4dc623fcab4dc5abeea55e";
 
 middelwareAuth.use((req, res, next) => {
-  console.log(req.headers);
   const token = req.headers["access-token"];
   if (token) {
     jwt.verify(token, key, (err, decoded) => {

@@ -2,8 +2,9 @@ var express = require("express");
 var router = express.Router();
 const { querys } = require("../db/querys/querys");
 const { commands } = require("../db/commands/commands");
-const Response = require("../models/response");
+
 const APP = "equipos";
+const Response = require("../models/response");
 const SUCCESS = "SUCCESS";
 // Save
 router.post(`/`, (req, res) => {
