@@ -10,8 +10,8 @@ import { IEquipo } from '../../models/equipo.model';
 export class FormAddComponent implements OnInit {
   btnText = 'Luis';
   equipo: IEquipo = {
-    serial: 'sas309304',
-    tipoEquipo: '1',
+    equipo_serial: 'sas309304',
+    tipo_equipo: '1',
     disco: '150',
     equipo_cpu: 'i5',
     key_office: 'skifjsai8r2023',
