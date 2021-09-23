@@ -1,0 +1,29 @@
+###
+GET http://localhost:3000/equipos/1
+
+###
+DELETE http://localhost:3000/equipos/1
+
+###
+GET http://localhost:3000/empleados/2
+
+###
+GET http://localhost:3000/asignaciones/3
+
+###
+GET http://localhost:3000/accesorios/4
+
+###
+POST http://localhost:3000/equipos  HTTP/1.1
+content-type: application/json
+{
+    "serial": "sas309304",
+    "tipoEquipo": "1",
+    "disco": "150GB",
+    "equipo_cpu": "fdafsa3",
+    "key_office": "skifjsai8r2023",
+    "key_so": "SASAASFS",
+    "ram": "4",
+    "version_office": "39r838fdf",
+    "version_so": "dsa9dus9aduas9su0a",
+}
