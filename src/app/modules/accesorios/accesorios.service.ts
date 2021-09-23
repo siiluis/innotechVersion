@@ -35,9 +35,9 @@ export class AccesoriosService {
     });
   }
 
-  updateAccesorios(asignaciones: IAccesorios) {
+  updateAccesorios(accesorios: IAccesorios) {
     this.http
-      .put<IResponse>(this.API, asignaciones)
+      .put<IResponse>(this.API, accesorios)
       .subscribe((response: IResponse) => {
         console.log(response.data);
       });

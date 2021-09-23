@@ -9,7 +9,7 @@ import { IEquipo } from '../../models/equipo.model';
 })
 export class FormAddComponent implements OnInit {
   btnText = 'Luis';
-  equipo: IEquipo = {
+    equipo: IEquipo = {
     serial: 'sas309304',
     tipoEquipo: '1',
     disco: '150',
@@ -19,6 +19,10 @@ export class FormAddComponent implements OnInit {
     ram: '4',
     version_office: '39r838fdf',
     version_so: 'dsa9dus9aduas9su0a',
+    fecha_creacion: {
+      hours: 0,
+      minutes: 0
+    }
   };
   constructor(private equiposService: EquiposService) {}
 

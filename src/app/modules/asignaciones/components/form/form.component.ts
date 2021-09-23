@@ -14,6 +14,10 @@ export class FormAddComponent implements OnInit {
     id_empleado: 1,
     id_equipo: 1,
     id_accesorio: 1,
+    fecha_creacion: {
+      hours: 0,
+      minutes: 0
+    }
   };
   constructor(private asignacionesService: AsignacionesService) {}
 

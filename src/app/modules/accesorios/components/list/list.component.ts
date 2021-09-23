@@ -8,12 +8,12 @@ class Accesorios {}
   styleUrls: ['./list.component.css'],
 })
 export class ListComponent implements OnInit {
-  listAsignaciones = [];
+  listAccesorios = [];
 
-  constructor(private AsignacionesService: AccesoriosService) {}
+  constructor(private AccesoriosService: AccesoriosService) {}
 
   ngOnInit(): void {
-    this.AsignacionesService.getAccesorios();
+    this.AccesoriosService.getAccesorios();
   }
 }
 
