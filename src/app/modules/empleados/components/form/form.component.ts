@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { EmpleadosService } from '../../empleados.service';
-import { createForm, Empleados } from '../../models/empleados.model';
+import { createForm, Empleado } from '../../models/empleados.model';
 
 @Component({
   selector: 'add-empleados',
@@ -10,8 +10,8 @@ import { createForm, Empleados } from '../../models/empleados.model';
   styleUrls: ['./form.component.css'],
 })
 export class FormAddComponent implements OnInit {
-  idEmpleados: string | undefined = undefined;
-  empleadosForm: FormGroup;
+  idEmpleado: string | undefined = undefined;
+  empleadoForm: FormGroup;
   btnText: string = 'Guardar';
 
   constructor(
@@ -20,28 +20,26 @@ export class FormAddComponent implements OnInit {
   ) {
     this.route.params.subscribe((params) => {
       if (params.id) {
-        this.idEmpleados = params.id;
+        this.idEmpleado = params.id;
         this.btnText = 'Actualizar';
       }
     });
-    this.empleadosForm = createForm(new Empleados());
+    this.empleadoForm = createForm(new Empleado());
   }
 
   ngOnInit(): void {
-    if (this.idEmpleados) {
-      this.empleadosService
-        .getEmpleados()
-        .subscribe((response: any) => {
-          this.empleadosForm = createForm(response.data);
-        });
+    if (this.idEmpleado) {
+      this.empleadosService.getEmpleados().subscribe((response: any) => {
+        this.empleadoForm = createForm(response.data);
+      });
     }
   }
 
   add() {
-    if (this.idEmpleados) {
-      this.empleadosService.updateEmpleados(this.empleadosForm.value);
+    if (this.idEmpleado) {
+      this.empleadosService.updateEmpleados(this.empleadoForm.value);
     } else {
-      this.empleadosService.addEmpleados(this.empleadosForm.value);
+      this.empleadosService.addEmpleados(this.empleadoForm.value);
     }
   }
 }

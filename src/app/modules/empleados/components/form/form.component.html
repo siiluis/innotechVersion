@@ -1,37 +1,33 @@
-<form class="formAsignar" [formGroup]="equipoForm">
+<form class="formAsignar" [formGroup]="empleadoForm">
   <div class="formAsignar" style="background-color: #ffc872; text-align: left">
     <div style="text-align: center">
       <h2 style="color: white; text-align: center">Registrar Empleado</h2>
-      <hr color="white" style="width: 50%"/>
+      <hr color="white" style="width: 50%" />
     </div>
     <div class="inputForm">
       <label style="color: white" for="nombre">Nombre completo:</label>
-      <input type="text" id="nombre" formControlName="nombre" required/>
+      <input type="text" id="nombre" formControlName="nombre" required />
     </div>
     <div class="inputForm">
       <label style="color: white" for="cedula">Cédula:</label>
-      <input type="text" id="cedula" formControlName="cedula" required/>
+      <input type="text" id="cedula" formControlName="cedula" required />
     </div>
     <div class="inputForm">
       <label style="color: white" for="email">Correo:</label>
-      <input type="text" id="email" formControlName="email" required/>
+      <input type="text" id="email" formControlName="email" required />
     </div>
     <div class="inputForm">
       <label style="color: white" for="telefono">Celular:</label>
-      <input type="text" id="telefono" formControlName="telefono"/>
+      <input type="text" id="telefono" formControlName="telefono" />
     </div>
     <div class="inputForm">
       <label style="color: white" for="area">Area:</label>
-      <input type="text" id="area" formControlName="area" required/>
+      <input type="text" id="area" formControlName="area" required />
     </div>
-    </div>
-    <div style="text-align: center">
-      <button
-        id="btnFinalizar"
-        ng-disabled="form.$invalid"
-        ng-click="asignar()">
-          {{btnText}}
-      </button>
-    </div>
+  </div>
+  <div style="text-align: center">
+    <button id="btnFinalizar" ng-disabled="form.$invalid" ng-click="asignar()">
+      {{ btnText }}
+    </button>
   </div>
 </form>

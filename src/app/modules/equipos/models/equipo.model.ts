@@ -1,4 +1,3 @@
-import { createPlatform } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 export interface IEquipo {

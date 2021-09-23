@@ -1,36 +1,33 @@
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-export interface IEmpleados {
-    ID?: string | undefined;
-    nombre: String;
-    cedula: String;
-    email: String;
-    telefono: String;
-    area: String;
-    fecha_creacion?: string;
-  }
+export interface IEmpleado {
+  ID?: string | undefined;
+  nombre: string;
+  cedula: string;
+  email: string;
+  telefono: string;
+  area: string;
+  fecha_creacion?: string;
+}
 
-export class Empleados {
+export class Empleado {
   constructor(
     public ID = undefined,
     public nombre = '',
     public cedula = '',
-    public email: '',
+    public email = '',
     public telefono = '',
-    public area = '',
+    public area = ''
   ) {}
 }
 
-export function createForm(empleados: IEmpleados) {
+export function createForm(empleado: IEmpleado) {
   return new FormGroup({
-    ID: new FormControl(empleados.ID),
-    nombre: new FormControl(empleados.nombre, [Validators.required]),
-    cedula: new FormControl(empleados.cedula, [Validators.required]),
-    email: new FormControl(empleados.email, [Validators.required]),
-    telefono: new FormControl(empleados.telefono, []),
-    area: new FormControl(empleados.area, [Validators.required]),
+    ID: new FormControl(empleado.ID),
+    nombre: new FormControl(empleado.nombre, [Validators.required]),
+    cedula: new FormControl(empleado.cedula, [Validators.required]),
+    email: new FormControl(empleado.email, [Validators.required]),
+    telefono: new FormControl(empleado.telefono, [Validators.required]),
+    area: new FormControl(empleado.area, [Validators.required]),
   });
 }
-
-
-  
