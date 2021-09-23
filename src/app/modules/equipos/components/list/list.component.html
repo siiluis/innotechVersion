@@ -1,30 +1,51 @@
+<h1>Equipos</h1>
+<hr color="white" />
 <div class="tableContainer">
-  <h1>Equipos</h1>
-  <hr color="white" />
   <table>
     <tr>
-      <th>Ingreso</th>
+      <th>ID</th>
+      <th>Tipo Equipo</th>
       <th>Serial</th>
-      <th>Empleado Asignado</th>
-      <th>Editar</th>
-      <th>Eliminar</th>
+      <th>Procesador</th>
+      <th>Memoria Ram</th>
+      <th>Disco</th>
+      <th>SO</th>
+      <th>Key SO</th>
+      <th>Office</th>
+      <th>Key Office</th>
+      <th>Fecha Registro</th>
+      <th>Acciones</th>
     </tr>
-    <tr ng-repeat="item in inventario">
-      <!--     <td>{{item.date_save | date}}</td>
-      <td>{{item.serial}}</td>
-      <td>{{item.empleado}}</td> -->
-      <td>a</td>
-      <td>b</td>
-      <td>c</td>
+    <tr *ngFor="let equipo of equiposService.equiposLista">
+      <td>{{ equipo.ID }}</td>
       <td>
-        <!--   ng-href="/inventarios/#!asignar_form/{{item.ID}}" -->
-        <a> <i class="fa fa-pencil-square" style="font-size: 25px"></i></a>
+        {{ equipo.tipo_equipo === "1" ? "Laptop" : "Desktop" }}
       </td>
+      <td>{{ equipo.equipo_serial }}</td>
+      <td>{{ equipo.equipo_cpu }}</td>
+      <td>{{ equipo.ram }} GB</td>
+      <td>{{ equipo.disco }} GB</td>
+      <td>{{ equipo.version_so }}</td>
+      <td>{{ equipo.key_so }}</td>
+      <td>{{ equipo.version_office }}</td>
+      <td>{{ equipo.key_office }}</td>
+      <td>{{ equipo.fecha_creacion | date }}</td>
+      <!--  <td> -->
+      <!--   ng-href="/inventarios/#!asignar_form/{{item.ID}}" -->
+      <!-- <a> <i class="fa fa-pencil-square" style="font-size: 25px"></i></a> -->
+      <!-- </td> -->
       <td>
+        <a>
+          <i
+            [routerLink]="['/app/modules/equipos/add', equipo.ID]"
+            class="fa fa-pencil-square"
+            style="font-size: 25px; padding-right: 2px; cursor: pointer"
+          ></i
+        ></a>
         <i
           class="fa fa-times-rectangle"
+          (click)="equiposService.deleteEquipo(equipo.ID)"
           style="font-size: 25px; cursor: pointer; color: red"
-          ng-click="eliminar(item.ID)"
         ></i>
       </td>
     </tr>

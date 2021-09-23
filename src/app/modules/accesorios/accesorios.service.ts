@@ -1,21 +1,21 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { IAccesorios } from './models/accesorios.model';
+import { IAccesorio } from './models/accesorios.model';
 import { IResponse } from 'src/app/shared/models/response.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AccesoriosService {
   readonly APP = 'accesorios';
   readonly API = `${environment.URL_API}/${this.APP}`;
 
-  accesoriosLista: IAccesorios[] = [];
+  accesoriosLista: IAccesorio[] = [];
   asignacionesSelect = '';
   constructor(private http: HttpClient) {}
 
-  addAccesorios(accesorios: IAccesorios) {
+  addAccesorios(accesorios: IAccesorio) {
     this.http
       .post<IResponse>(this.API, accesorios)
       .subscribe((response: IResponse) => {
@@ -35,7 +35,7 @@ export class AccesoriosService {
     });
   }
 
-  updateAccesorios(asignaciones: IAccesorios) {
+  updateAccesorios(asignaciones: IAccesorio) {
     this.http
       .put<IResponse>(this.API, asignaciones)
       .subscribe((response: IResponse) => {

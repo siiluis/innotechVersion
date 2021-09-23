@@ -1,7 +1,7 @@
 .tableContainer {
   margin-top: 2em;
-  width: 70%;
   height: 80%;
+  overflow: auto;
 }
 
 table {
@@ -32,7 +32,7 @@ table tr:hover {
   background-color: #ddd;
 }
 
-.tableContainer > h1 {
+h1 {
   color: #f0ffe5;
   text-align: center;
   margin: 0.5em;

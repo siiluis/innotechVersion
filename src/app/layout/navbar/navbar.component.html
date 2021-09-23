@@ -36,5 +36,13 @@
         <a routerLink="modules/accesorios/list">Accesorios</a>
       </div>
     </li>
+
+    <li class="dropdown">
+      <i
+        class="fa fa-sign-out"
+        (click)="authService.logout()"
+        style="font-size: 25px; cursor: pointer; color: red"
+      ></i>
+    </li>
   </ul>
 </div>

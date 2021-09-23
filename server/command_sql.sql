@@ -14,7 +14,7 @@ CREATE TABLE equipos(
     disco VARCHAR(3) NOT NULL ,
     equipo_cpu varchar(10) NOT NULL ,
     fecha_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (id_equipo)
+    PRIMARY KEY (ID)
 );
 
 
@@ -27,10 +27,8 @@ CREATE TABLE empleados (
     telefono tinyint,
     area VARCHAR(30) NOT NULL ,
     fecha_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ,
-    PRIMARY KEY (id_empleado)
+    PRIMARY KEY (ID)
 );
-
-
 
 DROP TABLE IF exists accesorios;
 CREATE TABLE accesorios (
@@ -39,7 +37,7 @@ CREATE TABLE accesorios (
     descripcion VARCHAR(50) NOT NULL ,
     fecha_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ,
     id_equipo INT ,
-    PRIMARY KEY (id_accesorio) ,
+    PRIMARY KEY (ID) ,
     FOREIGN KEY (id_equipo) REFERENCES equipos (id_equipo)
 );
 
@@ -50,8 +48,18 @@ CREATE TABLE asignaciones (
     id_equipo INT,
     id_accesorio INT,
     fecha_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (id_asignacion),
+    PRIMARY KEY (ID),
     FOREIGN KEY (id_equipo) REFERENCES equipos (id_equipo),
     FOREIGN KEY (id_empleado) REFERENCES empleados (id_empleado),
     FOREIGN KEY (id_accesorio) REFERENCES accesorios (id_accesorio)
+);
+
+
+DROP TABLE IF exists users;
+CREATE TABLE users (
+    ID INT NOT NULL AUTO_INCREMENT,
+    email VARCHAR(100),
+    password VARCHAR(100),
+    fecha_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (ID)
 );

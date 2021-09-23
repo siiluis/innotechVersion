@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'form-login',
@@ -7,20 +9,30 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login-form.component.css'],
 })
 export class LoginFormComponent implements OnInit {
-  loginForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required]),
-  });
-  constructor() {}
+  btnText = 'Ingresar';
+  actionAuth: string = 'login';
 
-  ngOnInit(): void {
-    this.loginForm.valueChanges.subscribe((e) => {
-      console.log(this.loginForm);
+  loginForm = new FormGroup({
+    email: new FormControl('luis@gmail.com', [
+      Validators.required,
+      Validators.email,
+    ]),
+    password: new FormControl('dsdsd', [Validators.required]),
+  });
+  constructor(private route: ActivatedRoute, private authService: AuthService) {
+    this.route.url.subscribe((route) => {
+      this.actionAuth = route[0].path;
+      if (route[0].path === 'register') {
+        this.btnText = 'Registrar';
+      }
     });
   }
 
+  ngOnInit(): void {
+    console.log(this.actionAuth);
+  }
+
   ingresar() {
-    console.log(this.loginForm);
-    /* this.email.setValue('Sdsds'); */
+    this.authService.actionAuth(this.loginForm.value, this.actionAuth);
   }
 }

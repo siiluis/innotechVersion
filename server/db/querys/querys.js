@@ -24,7 +24,21 @@ const getItem = function (nameTable, id) {
   });
 };
 
+const findUser = function (email, password) {
+  return new Promise(function (myResolve, myReject) {
+    connection.query(
+      `SELECT * FROM users WHERE email = ? AND password = ?`,
+      [email, password],
+      function (error, results, fields) {
+        if (error) throw error;
+        myResolve(results.length);
+      }
+    );
+  });
+};
+
 module.exports.querys = {
   getAll,
   getItem,
+  findUser,
 };

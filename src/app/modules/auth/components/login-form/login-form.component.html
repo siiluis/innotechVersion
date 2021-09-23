@@ -27,7 +27,7 @@
         </div>
       </div>
       <div class="inputForm">
-        <label for="password">Email:</label>
+        <label for="password">Password:</label>
         <input
           type="password"
           formControlName="password"
@@ -51,8 +51,12 @@
           [disabled]="!loginForm.valid"
           (click)="ingresar()"
         >
-          Ingresar
+          {{ btnText }}
         </button>
+        <a *ngIf="actionAuth != 'register'" routerLink="/auth/register"
+          >ir a registrar</a
+        >
+        <a *ngIf="actionAuth != 'login'" routerLink="/auth/login">ir a login</a>
       </div>
     </div>
   </div>

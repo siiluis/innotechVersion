@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AccesoriosService } from '../../accesorios.service';
-import { IAccesorios } from '../../models/accesorios.model';
+import { IAccesorio } from '../../models/accesorios.model';
 
 @Component({
   selector: 'app-form',
@@ -9,11 +9,11 @@ import { IAccesorios } from '../../models/accesorios.model';
 })
 export class FormAddComponent implements OnInit {
   btnAsignar = 'AsignarAcc';
-  accesorios: IAccesorios = {
-    id_accesorios: 1,
+  accesorios: IAccesorio = {
+    ID: '1',
     serial_accesorio: '1',
     descripcion: '1',
-    id_equipo: 2,
+    id_equipo: '2',
   };
   constructor(private accesoriosService: AccesoriosService) {}
 

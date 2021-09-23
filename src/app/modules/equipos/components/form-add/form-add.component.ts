@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { EquiposService } from '../../equipos.service';
-import { IEquipo } from '../../models/equipo.model';
+import { createForm, Equipo } from '../../models/equipo.model';
 
 @Component({
   selector: 'add-equipo',
@@ -8,24 +10,38 @@ import { IEquipo } from '../../models/equipo.model';
   styleUrls: ['./form-add.component.css'],
 })
 export class FormAddComponent implements OnInit {
-  btnText = 'Luis';
-  equipo: IEquipo = {
-    equipo_serial: 'sas309304',
-    tipo_equipo: '1',
-    disco: '150',
-    equipo_cpu: 'i5',
-    key_office: 'skifjsai8r2023',
-    key_so: 'asjdsafafjsa',
-    ram: '4',
-    version_office: '39r838fdf',
-    version_so: 'dsa9dus9aduas9su0a',
-  };
-  constructor(private equiposService: EquiposService) {}
+  idEquipo: string | undefined = undefined;
+  equipoForm: FormGroup;
+  btnText: string = 'Guardar';
 
-  ngOnInit(): void {}
+  constructor(
+    private equiposService: EquiposService,
+    private route: ActivatedRoute
+  ) {
+    this.route.params.subscribe((params) => {
+      if (params.id) {
+        this.idEquipo = params.id;
+        this.btnText = 'Actualizar';
+      }
+    });
+    this.equipoForm = createForm(new Equipo());
+  }
+
+  ngOnInit(): void {
+    if (this.idEquipo) {
+      this.equiposService
+        .getEquipo(this.idEquipo)
+        .subscribe((response: any) => {
+          this.equipoForm = createForm(response.data);
+        });
+    }
+  }
 
   add() {
-    this.equiposService.addEquipo(this.equipo);
-    console.log(this.equipo);
+    if (this.idEquipo) {
+      this.equiposService.updateEquipo(this.equipoForm.value);
+    } else {
+      this.equiposService.addEquipo(this.equipoForm.value);
+    }
   }
 }

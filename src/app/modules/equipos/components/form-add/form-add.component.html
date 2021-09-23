@@ -1,86 +1,36 @@
-<form class="formAsignar" name="form">
+<form class="formAsignar" [formGroup]="equipoForm">
   <div>
     <h2 style="color: white; text-align: center">Asignar equipo</h2>
     <hr color="white" style="width: 50%" />
   </div>
   <div class="inputForm">
     <label for="selectedTipo">TIPO EQUIPO:</label>
-    <select
-      name=""
-      id="selectedTipo"
-      class="selectForm"
-      style="width: 50%"
-      ng-init="asignacion.selected_tipo"
-      ng-model="asignacion.selected_tipo"
-      required
-    >
+    <select name="" id="selectedTipo" class="selectForm" style="width: 50%">
       <option value="1">LAPTOP</option>
       <option value="2">DESKTOP</option>
     </select>
   </div>
   <div class="inputForm">
     <label for="serialNumber">SERIAL:</label>
-    <input
-      type="text"
-      id="serialNumber"
-      ng-model="asignacion.serial"
-      required
-    />
+    <input type="text" id="serialNumber" formControlName="equipo_serial" />
   </div>
   <!-- {{asignacion.serial}} -->
 
   <div class="inputForm">
     <label for="licenciaSO">VERSION SO:</label>
-    <input
-      type="text"
-      id="licenciaSO"
-      ng-model="asignacion.version_so"
-      required
-    />
+    <input type="text" id="licenciaSO" formControlName="version_so" />
   </div>
   <div class="inputForm">
     <label for="licenciaOFFICE">VERSION OFFICE:</label>
-    <input
-      type="text"
-      id="licenciaOFFICE"
-      ng-model="asignacion.version_office"
-    />
-  </div>
-  <div class="inputForm">
-    <label for="antivirus">ANTIVIRUS:</label>
-    <input
-      type="text"
-      id="antivirus"
-      ng-model="asignacion.antivirus"
-      required
-    />
+    <input type="text" id="licenciaOFFICE" formControlName="version_office" />
   </div>
   <div class="inputForm">
     <label for="productKeySO">PRODUCT KEY SO:</label>
-    <input
-      type="text"
-      id="productKeySO"
-      ng-model="asignacion.productkey_so"
-      required
-    />
+    <input type="text" id="productKeySO" formControlName="version_office" />
   </div>
   <div class="inputForm">
     <label for="productKeyOFFICE">PRODUCT KEY OFFICE:</label>
-    <input
-      type="text"
-      id="productKeyOFFICE"
-      ng-model="asignacion.productKey_office"
-      required
-    />
-  </div>
-  <div class="inputForm">
-    <label for="serialNumber">EMPLEADO:</label>
-    <input
-      type="text"
-      id="serialNumber"
-      ng-model="asignacion.empleado"
-      required
-    />
+    <input type="text" id="productKeyOFFICE" formControlName="key_office" />
   </div>
 
   <div>
@@ -90,41 +40,17 @@
   <div style="display: flex; column-gap: 2em">
     <div style="width: 50%" class="inputForm">
       <label for="tipo_equipo">RAM ( GB ):</label>
-      <input
-        type="text"
-        id="productKeyOFFICE"
-        ng-model="asignacion.ram"
-        required
-      />
+      <input type="text" formControlName="ram" />
     </div>
     <div style="width: 50%" class="inputForm">
       <label for="tipo_equipo">CPU :</label>
-      <input
-        type="text"
-        id="productKeyOFFICE"
-        ng-model="asignacion.cpu"
-        required
-      />
+      <input type="text" formControlName="equipo_cpu" />
     </div>
   </div>
   <div style="display: flex; column-gap: 2em">
     <div style="width: 50%" class="inputForm">
       <label for="tipo_equipo">DISCO ( GB ):</label>
-      <input
-        type="text"
-        id="productKeyOFFICE"
-        ng-model="asignacion.disco"
-        required
-      />
-    </div>
-    <div style="width: 50%" class="inputForm">
-      <label for="tipo_equipo">GRAFICO:</label>
-      <input
-        type="text"
-        id="productKeyOFFICE"
-        ng-model="asignacion.grafico"
-        required
-      />
+      <input type="text" formControlName="disco" />
     </div>
   </div>
 

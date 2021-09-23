@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { EquiposService } from '../../equipos.service';
 
 class Equipo {}
@@ -8,9 +9,7 @@ class Equipo {}
   styleUrls: ['./list.component.css'],
 })
 export class ListComponent implements OnInit {
-  listEquipos = [];
-
-  constructor(private equiposService: EquiposService) {}
+  constructor(public equiposService: EquiposService, private router: Router) {}
 
   ngOnInit(): void {
     this.equiposService.getEquipos();
