@@ -38,7 +38,7 @@ CREATE TABLE accesorios (
     fecha_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ,
     id_equipo INT ,
     PRIMARY KEY (ID) ,
-    FOREIGN KEY (id_equipo) REFERENCES equipos (id_equipo)
+    FOREIGN KEY (id_equipo) REFERENCES equipos (ID)
 );
 
 DROP TABLE IF exists asignaciones;
@@ -49,9 +49,9 @@ CREATE TABLE asignaciones (
     id_accesorio INT,
     fecha_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (ID),
-    FOREIGN KEY (id_equipo) REFERENCES equipos (id_equipo),
-    FOREIGN KEY (id_empleado) REFERENCES empleados (id_empleado),
-    FOREIGN KEY (id_accesorio) REFERENCES accesorios (id_accesorio)
+    FOREIGN KEY (id_equipo) REFERENCES equipos (ID),
+    FOREIGN KEY (id_empleado) REFERENCES empleados (ID),
+    FOREIGN KEY (id_accesorio) REFERENCES accesorios (ID)
 );
 
 
