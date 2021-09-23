@@ -26,7 +26,7 @@
     </div>
   </div>
   <div style="text-align: center">
-    <button id="btnFinalizar" ng-disabled="form.$invalid" ng-click="asignar()">
+    <button id="btnFinalizar" ng-disabled="form.$invalid" (click)="add()">
       {{ btnText }}
     </button>
   </div>

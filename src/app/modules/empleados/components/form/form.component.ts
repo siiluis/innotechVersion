@@ -29,9 +29,11 @@ export class FormAddComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.idEmpleado) {
-      this.empleadosService.getEmpleados().subscribe((response: any) => {
-        this.empleadoForm = createForm(response.data);
-      });
+      this.empleadosService
+        .getEmpleado(this.idEmpleado)
+        .subscribe((response: any) => {
+          this.empleadoForm = createForm(response.data);
+        });
     }
   }
 

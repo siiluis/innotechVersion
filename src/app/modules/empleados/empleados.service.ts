@@ -21,6 +21,8 @@ export class EmpleadosService {
   ) {}
 
   addEmpleados(empleados: IEmpleado) {
+    console.log(empleados);
+
     this.http.post(this.API, empleados).subscribe((response) => {
       this.notificacionService.alertOk('OK', 'Se guardo el empleado.');
       this.getEmpleados();
@@ -29,7 +31,10 @@ export class EmpleadosService {
   }
 
   getEmpleados() {
-    return this.http.get<IResponse>(this.API);
+    this.http.get(this.API).subscribe((response: any) => {
+      console.log(response.data);
+      this.empleadosLista = response.data;
+    });
   }
 
   getEmpleado(id: string) {

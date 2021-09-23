@@ -5,11 +5,13 @@ const { querys } = require("../db/querys/querys");
 const { commands } = require("../db/commands/commands");
 
 const APP = "empleados";
+const SUCCESS = "SUCCESS";
+const Response = require("../models/response");
 
 // Save
 router.post(`/`, (req, res) => {
   commands.saveItem(APP, req.body);
-  res.status(200).send("Guardado");
+  res.status(200).json(new Response(SUCCESS, "Guardado"));
 });
 
 // get all
@@ -29,7 +31,7 @@ router.get(`/:id`, async (req, res) => {
 // update
 router.put(`/`, (req, res) => {
   commands.updateItem(APP, req.body);
-  res.status(200).send("Guardado");
+  res.status(200).json(new Response(SUCCESS, "Actualizado"));
 });
 
 // delete
