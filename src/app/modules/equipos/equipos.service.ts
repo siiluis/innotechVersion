@@ -25,6 +25,8 @@ export class EquiposService {
 
   getEquipos() {
     this.http.get<IResponse>(this.API).subscribe((response: IResponse) => {
+      console.log(response.data);
+
       this.equiposLista = response.data;
     });
   }
