@@ -14,8 +14,8 @@
 CREATE DATABASE IF NOT EXISTS innotech_db;
 USE innotech_db;
 
---- USERS
-DROP TABLE IF EXISTS users;
+# USERS
+DROP TABLE IF exists users;
 CREATE TABLE users (
     ID INT NOT NULL AUTO_INCREMENT,
     email VARCHAR(100),
@@ -25,7 +25,7 @@ CREATE TABLE users (
 );
 
 
---- AREAS
+# AREAS
 DROP TABLE IF exists areas;
 CREATE TABLE areas (
     ID INT NOT NULL AUTO_INCREMENT,
@@ -33,11 +33,10 @@ CREATE TABLE areas (
     code VARCHAR(5),
     id_user INT,
     fecha_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (ID),
-    FOREIGN KEY (id_user) REFERENCES users (ID)
+    PRIMARY KEY (ID)
 );
 
---- EMPLEADOS
+# EMPLEADOS
 DROP TABLE IF exists empleados;
 CREATE TABLE empleados (
     ID INT NOT NULL AUTO_INCREMENT,
@@ -48,12 +47,10 @@ CREATE TABLE empleados (
     id_area INT,
     id_user INT,
     fecha_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (ID),
-    FOREIGN KEY (id_area) REFERENCES areas (ID),
-    FOREIGN KEY (id_user) REFERENCES users (ID)
+    PRIMARY KEY (ID)
 );
 
---- EQUIPOS
+#  EQUIPOS
 DROP TABLE IF exists equipos;
 CREATE TABLE equipos(
     ID INT NOT NULL AUTO_INCREMENT,
@@ -68,11 +65,10 @@ CREATE TABLE equipos(
     equipo_cpu varchar(20) NOT NULL ,
     id_user INT,
     fecha_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (ID),
-    FOREIGN KEY (id_user) REFERENCES users(ID)
+    PRIMARY KEY (ID)
 );
 
---- ACCESORIOS
+#  ACCESORIOS
 DROP TABLE IF exists accesorios;
 CREATE TABLE accesorios (
     ID INT NOT NULL AUTO_INCREMENT,
@@ -80,11 +76,10 @@ CREATE TABLE accesorios (
     descripcion VARCHAR(50) NOT NULL,
     fecha_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     id_user INT,
-    PRIMARY KEY (ID),
-    FOREIGN KEY (id_user) REFERENCES users (ID)
+    PRIMARY KEY (ID)
 );
 
---- ASIGNACIONES DE EQUIPOS
+# ASIGNACIONES DE EQUIPOS
 DROP TABLE IF exists asignacion_equipos;
 CREATE TABLE asignacion_equipos (
     ID INT NOT NULL AUTO_INCREMENT,
@@ -92,13 +87,10 @@ CREATE TABLE asignacion_equipos (
     id_equipo INT,
     id_user INT,
     fecha_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (ID),
-    FOREIGN KEY (id_equipo) REFERENCES equipos (ID),
-    FOREIGN KEY (id_empleado) REFERENCES empleados (ID),
-    FOREIGN KEY (id_user) REFERENCES users (ID)
+    PRIMARY KEY (ID)
 );
 
---- ASIGNACIONES DE ACCESORIOS
+#  ASIGNACIONES DE ACCESORIOS
 DROP TABLE IF exists asignacion_accesorios;
 CREATE TABLE asignacion_accesorios (
     ID INT NOT NULL AUTO_INCREMENT,
@@ -106,9 +98,28 @@ CREATE TABLE asignacion_accesorios (
     id_accesorio INT,
     id_user INT,
     fecha_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (ID),
-    FOREIGN KEY (id_accesorio) REFERENCES accesorios (ID),
-    FOREIGN KEY (id_empleado) REFERENCES empleados (ID),
-    FOREIGN KEY (id_user) REFERENCES users (ID)
+    PRIMARY KEY (ID)
 );
 
+ALTER TABLE areas
+  ADD FOREIGN KEY (id_user) REFERENCES users(ID);
+
+ALTER TABLE empleados
+   ADD FOREIGN KEY (id_area) REFERENCES areas (ID),
+   ADD  FOREIGN KEY (id_user) REFERENCES users (ID);
+
+ALTER TABLE equipos
+    ADD FOREIGN KEY (id_user) REFERENCES users(ID);
+
+ALTER TABLE accesorios
+    ADD FOREIGN KEY (id_user) REFERENCES users (ID);
+
+ALTER TABLE asignacion_equipos
+  ADD FOREIGN KEY (id_equipo) REFERENCES equipos (ID),
+  ADD FOREIGN KEY (id_empleado) REFERENCES empleados (ID),
+  ADD FOREIGN KEY (id_user) REFERENCES users (ID);
+
+ALTER TABLE asignacion_accesorios
+   ADD FOREIGN KEY (id_accesorio) REFERENCES accesorios (ID),
+   ADD FOREIGN KEY (id_empleado) REFERENCES empleados (ID),
+   ADD FOREIGN KEY (id_user) REFERENCES users (ID);
