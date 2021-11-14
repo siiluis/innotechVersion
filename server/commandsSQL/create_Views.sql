@@ -1,5 +1,5 @@
--- 1 Consultar todos empleados con nombre y codigo de area.
---- SELECT * FROM vista_empleados_areas;
+# 1 Consultar todos empleados con nombre y codigo de area.
+# SELECT * FROM vista_empleados_areas;
 CREATE VIEW 
 vista_empleados_areas AS 
 SELECT 
@@ -8,8 +8,8 @@ FROM empleados
 INNER JOIN areas
 ON empleados.id_area = areas.ID;
 
--- 2 Consultar areas registradas por usuarios.
----SELECT * FROM vista_users_areas;
+# 2 Consultar areas registradas por usuarios.
+# SELECT * FROM vista_users_areas;
 CREATE VIEW 
 vista_users_areas AS 
 SELECT 
@@ -18,8 +18,8 @@ FROM areas
 INNER JOIN users
 ON areas.id_user = users.ID;
 
--- 3 Areas donde estan los equipos, imprime tipo de equipo.
----SELECT * FROM vista_equipos_in_areas;
+# 3 Areas donde estan los equipos, imprime tipo de equipo.
+# SELECT * FROM vista_equipos_in_areas;
 CREATE VIEW 
 vista_equipos_in_areas AS 
 SELECT equipos.equipo_serial AS Serial, 
@@ -31,8 +31,8 @@ ON asignacion_equipos.id_equipo = equipos.ID)
 INNER JOIN empleados
 ON asignacion_equipos.id_empleado = empleados.ID);
 
--- 4 Consultar equipos por empleados.
----SELECT * FROM vista_equipos_empleados;
+# 4 Consultar equipos por empleados.
+# SELECT * FROM vista_equipos_empleados;
 CREATE VIEW 
 vista_equipos_empleados AS 
 SELECT 
@@ -46,8 +46,8 @@ INNER JOIN equipos ON asignacion_equipos.id_equipo = equipos.ID
 INNER JOIN empleados ON asignacion_equipos.id_empleado = empleados.ID;
 
 
--- 5 Cual usuario asigno equipos a empleado.
----SELECT * FROM vista_user_asigna_equipos_empleado;
+# 5 Cual usuario asigno equipos a empleado.
+# SELECT * FROM vista_user_asigna_equipos_empleado;
 
 
 CREATE VIEW 

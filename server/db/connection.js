@@ -1,9 +1,9 @@
-var mysql = require("mysql");
+var mysql = require("mysql2");
 module.exports.connection = mysql.createConnection({
-  host: "localhost",
-  port:3002,
+  host: "127.0.0.1",
+  port:3001,
   user: "root",
-  password: "",
+  password: "test",
   database: "innotech_db",
 });
 

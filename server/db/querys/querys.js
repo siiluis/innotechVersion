@@ -1,21 +1,28 @@
 const { connection } = require("../connection");
-const getAll = (nameTable) => {
-  return new Promise(function (myResolve, myReject) {
-    connection.query(
-      `SELECT * FROM ${nameTable}`,
-      function (error, results, fields) {
-        if (error) throw error;
-        myResolve(results);
-      }
-    );
-  });
-};
+const CALL = "CALL";
+const SELECT_FROM = "SELECT * FROM";
+const viewsDb = {
+  getUsers: `${CALL} Users`,
+  getAreas: `${CALL} Areas`,
+  getEmpleados: `${CALL} Empleados`,
+  getEquipos: `${CALL} Equipos`,
+  getAccesorios: `${CALL} Accesorios`,
+
+  getEquiposAsignados: `${SELECT_FROM} vista_asigna_equipos_empleado`,
+  getAccesoriosAsignados: `${SELECT_FROM} vista_asigna_accesorios_empleado`,
+  getAsignacionesEquiposByUsers: `${SELECT_FROM} vista_user_asigna_equipos_empleado`, 
+  getEquiposEmpleados: `${SELECT_FROM} vista_equipos_empleados`,
+
+  getEmpleadosAreas: `${SELECT_FROM} vista_empleados_areas`,
+  getEquiposAreas: `${SELECT_FROM} vista_equipos_in_areas`,
+  getUsersAreas: `${SELECT_FROM}  vista_users_areas`,
+
+}
 
 const getItem = function (nameTable, id) {
   return new Promise(function (myResolve, myReject) {
-    connection.query(
-      `SELECT * FROM ${nameTable} WHERE ID = ${id}`,
-      [id],
+    connection.execute(
+      `CALL ${nameTable} (${id})`,
       function (error, results, fields) {
         if (error) throw error;
         myResolve(results[0]);
@@ -24,21 +31,23 @@ const getItem = function (nameTable, id) {
   });
 };
 
-const findUser = function (email, password) {
+
+const getView = (view) => {
   return new Promise(function (myResolve, myReject) {
     connection.query(
-      `SELECT * FROM users WHERE email = ? AND password = ?`,
-      [email, password],
+      `${viewsDb[view]}`,
       function (error, results, fields) {
         if (error) throw error;
-        myResolve(results.length);
+        console.log(results);
+        myResolve(results);
       }
     );
   });
-};
+}
 
 module.exports.querys = {
-  getAll,
   getItem,
-  findUser,
+  getView
 };
+
+
