@@ -64,9 +64,9 @@
   cursor: default;
 }
 
-#btnRegistrar {
+#btnIngresar {
   border: none;
-  background-color: #2833d1;
+  background-color: #012403;
   color: white;
   font-weight: bold;
   padding: 15px 32px;
@@ -77,19 +77,20 @@
   margin: 4px 2px;
   cursor: pointer;
 }
-#btnRegistrar:hover {
+#btnIngresar:hover {
   background: #482385;
 }
-#btnRegistrar:disabled {
+#btnIngresar:disabled {
   background: #dddddd;
   cursor: default;
 }
 
 a:link,
 a:visited {
-  background-color: #f44336;
-  color: white;
-  padding: 14px 25px;
+  margin: 10px;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  padding: 1px 2px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -97,5 +98,73 @@ a:visited {
 
 a:hover,
 a:active {
-  background-color: red;
+  background-color: rgb(153, 0, 0);
+}
+
+
+.formIngresar {
+  margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+
+}
+
+.formIngresar > hr {
+  margin-bottom: 1em;
+}
+
+.inputForm{
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+}
+
+#formLogin {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5em;
+}
+.inputForm > label {
+  color: white;
+  font-weight: bold;
+  font-size: large;
+}
+
+
+.inputForm > input {
+  width: 200px;
+  height: 2em;
+  border: none;
+  margin-left: 1em;
+  color: black;
+}
+.inputForm span {
+  color: red;
+  font-size: small;
+  font-weight: bolder;
+}
+.inputErrors {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
+
+a:link,
+a:visited {
+  margin: 10px;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  padding: 1px 2px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:hover,
+a:active {
+  background-color: rgb(153, 0, 0);
 }

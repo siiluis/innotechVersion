@@ -1,3 +1,5 @@
 export interface IResponse {
-  data: any;
+  status: string;
+  msg: string | null;
+  data: any | null;
 }

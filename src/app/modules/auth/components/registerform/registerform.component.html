@@ -1,5 +1,5 @@
-<form [formGroup]="loginForm">
-  <div class="formIngresar">
+<form [formGroup]="registerForm">
+  <div class="formRegister">
     <div style="text-align: center">
       <h2 style="color: white; text-align: center">BIENVENIDO</h2>
       <hr color="white" style="width: 50%" />
@@ -9,16 +9,28 @@
       <img src="assets/profile.png" style="height: 20%; width: 20%" alt="" />
     </div>
 
-    <div id="formLogin">
+    <div>
+
+      <div class="inputForm">
+        <label for="nombre">Nombre:</label>
+        <input type="text" formControlName="nombre" name="nombre" id="nombre" />
+        <div class="inputErrors">
+          <span *ngIf="
+            registerForm.controls.nombre.touched &&
+            registerForm.controls.nombre.errors?.required
+            ">Nombre requerido requerido.</span>
+        </div>
+      </div>
+
       <div class="inputForm">
         <label for="email">Email:</label>
         <input type="email" formControlName="email" name="email" id="name" />
         <div class="inputErrors">
           <span *ngIf="
-              loginForm.controls.email.touched &&
-              loginForm.controls.email.errors?.required
+            registerForm.controls.email.touched &&
+            registerForm.controls.email.errors?.required
             ">Email requerido.</span>
-          <span *ngIf="loginForm.controls.email.errors?.email">Solo se permite Email.</span>
+          <span *ngIf="registerForm.controls.email.errors?.email">Solo se permite Email.</span>
         </div>
       </div>
       <div class="inputForm">
@@ -26,19 +38,18 @@
         <input type="password" formControlName="password" name="password" id="password" />
         <div class="inputErrors">
           <span *ngIf="
-              loginForm.controls.password.touched &&
-              loginForm.controls.password.errors?.required
+            registerForm.controls.password.touched &&
+            registerForm.controls.password.errors?.required
             ">password requerido.</span>
         </div>
       </div>
 
-
       <div [align]="'center'">
-        <button id="btnIngresar" [disabled]="!loginForm.valid" (click)="ingresar()">
+        <button id="btnRegistrar" [disabled]="!registerForm.valid" (click)="registrar()">
           {{ btnText }}
         </button>
         <div>
-          <i><a routerLink="/auth/register">ir a Registro</a></i>
+          <i><a routerLink="/auth/login">ir a login</a></i>
         </div>
       </div>
     </div>

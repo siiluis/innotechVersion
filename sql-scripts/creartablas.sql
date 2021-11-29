@@ -78,33 +78,11 @@ CREATE TABLE asignacion_accesorios (
     PRIMARY KEY (ID)
 );
 
-ALTER TABLE areas
-  ADD FOREIGN KEY (id_user) REFERENCES users(ID) ON DELETE CASCADE;
-
-ALTER TABLE empleados
-   ADD FOREIGN KEY (id_area) REFERENCES areas (ID) ON DELETE CASCADE,
-   ADD  FOREIGN KEY (id_user) REFERENCES users (ID) ON DELETE CASCADE;
-
-ALTER TABLE equipos
-    ADD FOREIGN KEY (id_user) REFERENCES users(ID) ON DELETE CASCADE;
-
-ALTER TABLE accesorios
-    ADD FOREIGN KEY (id_user) REFERENCES users (ID) ON DELETE CASCADE;
-
-ALTER TABLE asignacion_equipos
-  ADD FOREIGN KEY (id_equipo) REFERENCES equipos (ID) ON DELETE CASCADE,
-  ADD FOREIGN KEY (id_empleado) REFERENCES empleados (ID) ON DELETE CASCADE,
-  ADD FOREIGN KEY (id_user) REFERENCES users (ID) ON DELETE CASCADE;
-
-ALTER TABLE asignacion_accesorios
-   ADD FOREIGN KEY (id_accesorio) REFERENCES accesorios (ID) ON DELETE CASCADE,
-   ADD FOREIGN KEY (id_empleado) REFERENCES empleados (ID) ON DELETE CASCADE,
-   ADD FOREIGN KEY (id_user) REFERENCES users (ID) ON DELETE CASCADE;
 
 
 DELIMITER $$
 CREATE PROCEDURE addUser(
-        IN _email VARCHAR(100), 
+        IN _email VARCHAR(100),
         IN _password VARCHAR(100)
         )
     BEGIN
@@ -117,7 +95,7 @@ CREATE PROCEDURE addUser(
 DELIMITER $$
 CREATE PROCEDURE User(IN _ID INT)
     BEGIN
-        SELECT * 
+        SELECT *
         FROM users
         WHERE ID = _ID;
     END$$
@@ -125,19 +103,19 @@ CREATE PROCEDURE User(IN _ID INT)
 DELIMITER $$
 CREATE PROCEDURE Users()
     BEGIN
-        SELECT * 
+        SELECT *
         FROM users;
     END$$
 
 DELIMITER $$
 CREATE PROCEDURE updateUser(
-        IN _ID INT, 
-        IN _email VARCHAR(100), 
+        IN _ID INT,
+        IN _email VARCHAR(100),
         IN _password VARCHAR(100)
     )
     BEGIN
         UPDATE users
-        SET 
+        SET
             email = _email,
             password = _password
         WHERE  ID = _ID;
@@ -152,28 +130,28 @@ CREATE PROCEDURE deleteUser(IN _ID INT)
 
 DELIMITER $$
 CREATE PROCEDURE addArea(
-        IN _nombre VARCHAR(50), 
+        IN _nombre VARCHAR(50),
         IN _code VARCHAR(5),
         IN _id_user INT
         )
     BEGIN
-        INSERT 
+        INSERT
         INTO areas (
-            nombre, 
+            nombre,
             code,
             id_user
         )
         VALUES (
            _nombre,
            _code,
-           _id_user 
+           _id_user
         );
     END$$
 
 DELIMITER $$
 CREATE PROCEDURE Area(IN _ID INT)
     BEGIN
-        SELECT * 
+        SELECT *
         FROM areas
         WHERE ID = _ID;
     END$$
@@ -181,20 +159,20 @@ CREATE PROCEDURE Area(IN _ID INT)
 DELIMITER $$
 CREATE PROCEDURE Areas()
     BEGIN
-        SELECT * 
+        SELECT *
         FROM areas;
     END$$
 
 DELIMITER $$
 CREATE PROCEDURE updateArea(
-    IN _ID INT, 
-    IN _nombre VARCHAR(50), 
+    IN _ID INT,
+    IN _nombre VARCHAR(50),
     IN _code VARCHAR(5),
     IN _id_user INT
     )
     BEGIN
         UPDATE areas
-        SET 
+        SET
             nombre = _nombre,
             code = _code,
             id_user = _id_user
@@ -210,7 +188,7 @@ CREATE PROCEDURE deleteArea(IN _ID INT)
 
 DELIMITER $$
 CREATE PROCEDURE addEmpleado(
-        IN _nombre VARCHAR(100), 
+        IN _nombre VARCHAR(100),
         IN _cedula VARCHAR(15),
         IN _email VARCHAR(80),
         IN _telefono VARCHAR(15),
@@ -219,13 +197,13 @@ CREATE PROCEDURE addEmpleado(
         )
     BEGIN
         INSERT
-         INTO 
+         INTO
             empleados (
                 nombre,
                 cedula,
                 email,
                 telefono,
-                id_area,            
+                id_area,
                 id_user
             )
         VALUES (
@@ -258,8 +236,8 @@ CREATE PROCEDURE Empleados()
 
 DELIMITER $$
 CREATE PROCEDURE updateEmpleado (
-        IN _ID INT, 
-        IN _nombre VARCHAR(100), 
+        IN _ID INT,
+        IN _nombre VARCHAR(100),
         IN _cedula VARCHAR(15),
         IN _email VARCHAR(80),
         IN _telefono VARCHAR(15),
@@ -268,7 +246,7 @@ CREATE PROCEDURE updateEmpleado (
     )
     BEGIN
         UPDATE empleados
-        SET 
+        SET
             nombre = _nombre,
             cedula = _cedula,
             email = _email,
@@ -287,7 +265,7 @@ CREATE PROCEDURE deleteEmpleado(IN _ID INT)
 
 DELIMITER $$
 CREATE PROCEDURE addEquipo (
-        IN _tipo_equipo VARCHAR(1), 
+        IN _tipo_equipo VARCHAR(1),
         IN _equipo_serial VARCHAR(30),
         IN _version_so VARCHAR (80),
         IN _key_so VARCHAR (80),
@@ -300,14 +278,14 @@ CREATE PROCEDURE addEquipo (
         )
     BEGIN
         INSERT
-         INTO 
+         INTO
             equipos (
                 tipo_equipo,
                 equipo_serial,
                 version_so,
                 key_so,
                 version_office,
-                key_office,         
+                key_office,
                 ram,
                 disco,
                 equipo_cpu,
@@ -346,8 +324,8 @@ CREATE PROCEDURE Equipos()
 
 DELIMITER $$
 CREATE PROCEDURE updateEquipo (
-        IN _ID INT, 
-        IN _tipo_equipo VARCHAR(1), 
+        IN _ID INT,
+        IN _tipo_equipo VARCHAR(1),
         IN _equipo_serial VARCHAR(30),
         IN _version_so VARCHAR (80),
         IN _key_so  VARCHAR(80),
@@ -360,7 +338,7 @@ CREATE PROCEDURE updateEquipo (
     )
     BEGIN
         UPDATE equipos
-        SET 
+        SET
             tipo_equipo = _tipo_equipo,
             equipo_serial = _equipo_serial,
             version_so = _version_so,
@@ -383,20 +361,20 @@ CREATE PROCEDURE deleteEquipo(IN _ID INT)
 
 DELIMITER $$
 CREATE PROCEDURE addAccesorio(
-        IN _serial_accesorio VARCHAR(20), 
+        IN _serial_accesorio VARCHAR(20),
         IN _descripcion VARCHAR(50),
         IN _id_user INT
         )
     BEGIN
-        INSERT 
+        INSERT
         INTO accesorios (
-                serial_accesorio, 
-                descripcion, 
+                serial_accesorio,
+                descripcion,
                 id_user
             )
         VALUES (
             _serial_accesorio,
-            _descripcion, 
+            _descripcion,
             _id_user
         );
     END$$
@@ -404,7 +382,7 @@ CREATE PROCEDURE addAccesorio(
 DELIMITER $$
 CREATE PROCEDURE Accesorio(IN _ID INT)
     BEGIN
-        SELECT * 
+        SELECT *
         FROM accesorios
         WHERE ID = _ID;
     END$$
@@ -412,20 +390,20 @@ CREATE PROCEDURE Accesorio(IN _ID INT)
 DELIMITER $$
 CREATE PROCEDURE Accesorios()
     BEGIN
-        SELECT * 
+        SELECT *
         FROM accesorios;
     END$$
 
 DELIMITER $$
 CREATE PROCEDURE updateAccesorio(
-        IN _ID INT, 
-        IN _serial_accesorio VARCHAR(20), 
+        IN _ID INT,
+        IN _serial_accesorio VARCHAR(20),
         IN _descripcion VARCHAR(50),
         IN _id_user INT
         )
     BEGIN
         UPDATE accesorios
-        SET 
+        SET
             serial_accesorio = _serial_accesorio,
             descripcion = _descripcion,
             id_user = _id_user
@@ -442,7 +420,7 @@ CREATE PROCEDURE deleteAccesorio(IN _ID INT)
 DELIMITER $$
 CREATE PROCEDURE Asignacion_Equipo(IN _ID INT)
     BEGIN
-        SELECT 
+        SELECT
         asignacion_equipos.ID,
         empleados.nombre AS "nombreEmpleado",
         equipos.equipo_serial AS "equipoSerial",
@@ -456,7 +434,7 @@ CREATE PROCEDURE Asignacion_Equipo(IN _ID INT)
 DELIMITER $$
 CREATE PROCEDURE Asignaciones_Equipo()
     BEGIN
-        SELECT 
+        SELECT
         asignacion_equipos.ID,
         empleados.nombre AS "nombreEmpleado",
         equipos.equipo_serial AS "equipoSerial",
@@ -468,14 +446,14 @@ CREATE PROCEDURE Asignaciones_Equipo()
 
 DELIMITER $$
 CREATE PROCEDURE updateAsignacion_Equipo(
-        IN _ID INT, 
-        IN _id_empleado INT, 
+        IN _ID INT,
+        IN _id_empleado INT,
         IN _id_equipo INT,
         IN _id_user INT
         )
     BEGIN
         UPDATE asignacion_equipos
-        SET 
+        SET
             id_empleado = _id_empleado,
             id_equipo = _id_equipo,
             id_user = _id_user
@@ -492,7 +470,7 @@ CREATE PROCEDURE deleteAsignacion_Equipo(IN _ID INT)
 DELIMITER $$
 CREATE PROCEDURE Asignacion_Accesorio(IN _ID INT)
     BEGIN
-        SELECT 
+        SELECT
         asignacion_accesorios.ID,
         empleados.nombre AS "nombreEmpleado",
         accesorios.descripcion AS "Descripcion",
@@ -506,7 +484,7 @@ CREATE PROCEDURE Asignacion_Accesorio(IN _ID INT)
 DELIMITER $$
 CREATE PROCEDURE Asignaciones_Accesorio()
     BEGIN
-        SELECT 
+        SELECT
         asignacion_accesorios.ID,
         empleados.nombre AS "nombreEmpleado",
         accesorios.descripcion AS "Descripcion",
@@ -518,14 +496,14 @@ CREATE PROCEDURE Asignaciones_Accesorio()
 
 DELIMITER $$
 CREATE PROCEDURE updateAsignacion_Accesorio(
-        IN _ID INT, 
-        IN _id_empleado INT, 
+        IN _ID INT,
+        IN _id_empleado INT,
         IN _id_accesorio INT,
         IN _id_user INT
         )
     BEGIN
         UPDATE asignacion_accesorios
-        SET 
+        SET
             id_empleado = _id_empleado,
             id_accesorio = _id_accesorio,
             id_user = _id_user
@@ -544,32 +522,32 @@ DELIMITER ;
 
 # 1 Consultar todos empleados con nombre y codigo de area.
 # SELECT * FROM vista_empleados_areas;
-CREATE VIEW 
-vista_empleados_areas AS 
-SELECT 
-empleados.ID, empleados.nombre, empleados.cedula, areas.nombre AS area, areas.code 
+CREATE VIEW
+vista_empleados_areas AS
+SELECT
+empleados.ID, empleados.nombre, empleados.cedula, areas.nombre AS area, areas.code
 FROM empleados
 INNER JOIN areas
 ON empleados.id_area = areas.ID;
 
 # 2 Consultar areas registradas por usuarios.
 # SELECT * FROM vista_users_areas;
-CREATE VIEW 
-vista_users_areas AS 
-SELECT 
-users.email, areas.nombre AS area, areas.code 
+CREATE VIEW
+vista_users_areas AS
+SELECT
+users.email, areas.nombre AS area, areas.code
 FROM areas
 INNER JOIN users
 ON areas.id_user = users.ID;
 
 # 3 Areas donde estan los equipos, imprime tipo de equipo.
 # SELECT * FROM vista_equipos_in_areas;
-CREATE VIEW 
-vista_equipos_in_areas AS 
-SELECT equipos.equipo_serial AS Serial, 
-IF(equipos.tipo_equipo>"1", "LAPTOP", "DESKTOP") AS "Equipo Tipo", 
+CREATE VIEW
+vista_equipos_in_areas AS
+SELECT equipos.equipo_serial AS Serial,
+IF(equipos.tipo_equipo>"1", "LAPTOP", "DESKTOP") AS "Equipo Tipo",
 empleados.nombre, (SELECT areas.nombre FROM areas WHERE ID = empleados.id_area ) AS "Area"
-FROM ((asignacion_equipos 
+FROM ((asignacion_equipos
 INNER JOIN equipos
 ON asignacion_equipos.id_equipo = equipos.ID)
 INNER JOIN empleados
@@ -577,13 +555,13 @@ ON asignacion_equipos.id_empleado = empleados.ID);
 
 # 4 Consultar equipos por empleados.
 # SELECT * FROM vista_equipos_empleados;
-CREATE VIEW 
-vista_equipos_empleados AS 
-SELECT 
-IF(equipos.tipo_equipo>"1", "LAPTOP", "DESKTOP") AS "Equipo Tipo", 
+CREATE VIEW
+vista_equipos_empleados AS
+SELECT
+IF(equipos.tipo_equipo>"1", "LAPTOP", "DESKTOP") AS "Equipo Tipo",
 equipos.equipo_serial AS "Serial",
-empleados.nombre, 
-empleados.telefono, 
+empleados.nombre,
+empleados.telefono,
 DATE_FORMAT(asignacion_equipos.fecha_creacion,"%M %e %Y") AS "Fecha Asignado"
 FROM asignacion_equipos
 INNER JOIN equipos ON asignacion_equipos.id_equipo = equipos.ID
@@ -592,9 +570,9 @@ INNER JOIN empleados ON asignacion_equipos.id_empleado = empleados.ID;
 # 5 Cual usuario asigno equipos a empleado.
 # SELECT * FROM vista_user_asigna_equipos_empleado;
 
-CREATE VIEW 
-vista_user_asigna_equipos_empleado AS 
-SELECT 
+CREATE VIEW
+vista_user_asigna_equipos_empleado AS
+SELECT
 users.email AS "User",
 IF(equipos.tipo_equipo>"1", "LAPTOP", "DESKTOP") AS "Equipo Tipo",
 equipos.equipo_serial AS Serial,
@@ -607,9 +585,9 @@ INNER JOIN empleados ON asignacion_equipos.id_empleado = empleados.ID;
 
 
 # SELECT * FROM vista_asigna_accesorios_empleado;
-CREATE VIEW 
-vista_asigna_accesorios_empleado AS 
-        SELECT 
+CREATE VIEW
+vista_asigna_accesorios_empleado AS
+        SELECT
         asignacion_accesorios.ID,
         empleados.nombre AS "nombreEmpleado",
         accesorios.descripcion AS "Descripcion",
@@ -619,9 +597,9 @@ vista_asigna_accesorios_empleado AS
         INNER JOIN empleados ON asignacion_accesorios.id_empleado = empleados.ID;
 
 # SELECT * FROM vista_asigna_equipos_empleado;
-CREATE VIEW 
-vista_asigna_equipos_empleado AS 
-        SELECT 
+CREATE VIEW
+vista_asigna_equipos_empleado AS
+        SELECT
         asignacion_equipos.ID,
         empleados.nombre AS "nombreEmpleado",
         equipos.equipo_serial AS "equipoSerial",

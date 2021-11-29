@@ -54,6 +54,8 @@ export class EmpleadosService {
     this.http
       .delete<IResponse>(`${this.API}/${id}`)
       .subscribe((response: IResponse) => {
+        console.log(response);
+
         this.notificacionService.alertOk('OK', 'Se elimino el empleado.');
         this.getEmpleados();
       });

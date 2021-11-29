@@ -32,6 +32,7 @@ const deleteItem = function (nameTable, id) {
       id,
       function (error, results, fields) {
         if (error) throw error;
+        console.log(results);
         myResolve(results);
       }
     );

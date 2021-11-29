@@ -11,5 +11,7 @@ export class NotificacionesService {
   }
   alertInfo() {}
 
-  alertError() {}
+  alertError(titulo: string, subtitulo: string) {
+    Swal.fire(titulo, subtitulo, 'error');
+  }
 }

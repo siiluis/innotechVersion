@@ -6,7 +6,7 @@ export interface IEmpleado {
   cedula: string;
   email: string;
   telefono: string;
-  area: string;
+  nombresArea: string;
   fecha_creacion?: string;
 }
 
@@ -17,7 +17,7 @@ export class Empleado {
     public cedula = '',
     public email = '',
     public telefono = '',
-    public area = ''
+    public nombresArea = ''
   ) {}
 }
 
@@ -28,6 +28,6 @@ export function createForm(empleado: IEmpleado) {
     cedula: new FormControl(empleado.cedula, [Validators.required]),
     email: new FormControl(empleado.email, [Validators.required]),
     telefono: new FormControl(empleado.telefono, [Validators.required]),
-    area: new FormControl(empleado.area, [Validators.required]),
+    area: new FormControl(empleado.nombresArea, [Validators.required]),
   });
 }

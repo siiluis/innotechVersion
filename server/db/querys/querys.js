@@ -10,7 +10,7 @@ const viewsDb = {
 
   getEquiposAsignados: `${SELECT_FROM} vista_asigna_equipos_empleado`,
   getAccesoriosAsignados: `${SELECT_FROM} vista_asigna_accesorios_empleado`,
-  getAsignacionesEquiposByUsers: `${SELECT_FROM} vista_user_asigna_equipos_empleado`, 
+  getAsignacionesEquiposByUsers: `${SELECT_FROM} vista_user_asigna_equipos_empleado`,
   getEquiposEmpleados: `${SELECT_FROM} vista_equipos_empleados`,
 
   getEmpleadosAreas: `${SELECT_FROM} vista_empleados_areas`,
@@ -39,7 +39,7 @@ const getView = (view) => {
       function (error, results, fields) {
         if (error) throw error;
         console.log(results);
-        myResolve(results);
+        myResolve(results[0]);
       }
     );
   });

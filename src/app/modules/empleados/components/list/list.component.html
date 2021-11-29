@@ -3,7 +3,7 @@
   <hr color="white" />
   <table>
     <tr>
-      <th>Ingreso</th>
+      <th>ID</th>
       <th>Empleado</th>
       <th>Cédula</th>
       <th>Correo</th>
@@ -12,25 +12,25 @@
       <th>Fecha Registro</th>
       <th>Acciones</th>
     </tr>
-    <tr *ngFor="let empleados of empleadosService.empleadosLista">
-      <td>{{ empleados.ID }}</td>
-      <td>{{ empleados.nombre }}</td>
-      <td>{{ empleados.cedula }}</td>
-      <td>{{ empleados.email }}</td>
-      <td>{{ empleados.telefono }}</td>
-      <td>{{ empleados.area }}</td>
-      <td>{{ empleados.fecha_creacion | date }}</td>
+    <tr *ngFor="let empleado of empleadosService.empleadosLista">
+      <td>{{ empleado.ID }}</td>
+      <td>{{ empleado.nombre }}</td>
+      <td>{{ empleado.cedula }}</td>
+      <td>{{ empleado.email }}</td>
+      <td>{{ empleado.telefono }}</td>
+      <td>{{ empleado.nombresArea }}</td>
+      <td>{{ empleado.fecha_creacion | date }}</td>
       <td>
         <a>
           <i
-            [routerLink]="['/app/modules/empleados/add', empleados.ID]"
+            [routerLink]="['/app/modules/empleados/add', empleado.ID]"
             class="fa fa-pencil-square"
             style="font-size: 25px; padding-right: 2px; cursor: pointer"
           ></i
         ></a>
         <i
           class="fa fa-times-rectangle"
-          (click)="empleadosService.deleteEmpleados(empleados.ID)"
+          (click)="empleadosService.deleteEmpleados(empleado.ID)"
           style="font-size: 25px; cursor: pointer; color: red"
         ></i>
       </td>
