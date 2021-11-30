@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../auth.service';
 
+
 @Component({
   selector: 'app-registerform',
   templateUrl: './registerform.component.html',
@@ -25,6 +26,12 @@ export class RegisterformComponent implements OnInit {
   }
 
   registrar() {
-    this.authService.actionAuth(this.registerForm.value, this.actionAuth);
+    const newUser = {
+      nombre:this.registerForm.get('nombre')?.value,
+      email:this.registerForm.get('email')?.value,
+      password:this.registerForm.get('password')?.value
+    }
+
+    this.authService.register(newUser);
   }
 }

@@ -10,29 +10,24 @@ import { AuthService } from '../../auth.service';
 })
 export class LoginFormComponent implements OnInit {
   btnText = 'Ingresar';
-  actionAuth: string = 'login';
+
 
   loginForm = new FormGroup({
-    email: new FormControl('luis@gmail.com', [
+    email: new FormControl('luissarmiento@gmail.com', [
       Validators.required,
       Validators.email,
     ]),
-    password: new FormControl('dsdsd', [Validators.required]),
+    password: new FormControl('12345', [Validators.required]),
   });
   constructor(private route: ActivatedRoute, private authService: AuthService) {
-    this.route.url.subscribe((route) => {
-      this.actionAuth = route[0].path;
-      if (route[0].path === 'register') {
-        this.btnText = 'Registrar';
-      }
-    });
+
   }
 
   ngOnInit(): void {
-    console.log(this.actionAuth);
+
   }
 
   ingresar() {
-    this.authService.actionAuth(this.loginForm.value, this.actionAuth);
+    this.authService.login(this.loginForm.get('email')?.value,this.loginForm.get('password')?.value);
   }
 }

@@ -1,11 +1,10 @@
 var express = require("express");
 var router = express.Router();
-const bcrypt = require('bcrypt');
+const bcrypt = require("bcrypt");
 
 const { connection } = require("../db/connection");
 const { commands } = require("../db/commands/commands");
 const { autorizacion } = require("../autorizacion");
-
 
 const saltRounds = 10;
 const salt = bcrypt.genSaltSync(saltRounds);
@@ -16,24 +15,32 @@ const SUCCESS = "SUCCESS";
 // Save
 router.post(`/register`, async (req, res) => {
   if (await findEmail(req.body.email)) {
-    res.status(400).json(new Response(SUCCESS, "El email ya se encuentra registado"));
+    res
+      .status(400)
+      .json(new Response(SUCCESS, "El email ya se encuentra registado"));
   } else {
     req.body.password = encodePassword(req.body.password);
-    commands.saveItem(APP, req.body);
-    res.status(200).json(new Response(SUCCESS, "Guardado"));
+    connection.query(
+      `INSERT INTO users SET ? `,
+      req.body,
+      function (error, results, fields) {
+        if (error) throw error;
+        console.log("Datos guardados ", results.affectedRows > 0);
+        res.status(200).json(new Response(SUCCESS, "Guardado"));
+      }
+    );
   }
-
 });
 
 router.post(`/login`, async (req, res) => {
   const loginSuccess = await login(req.body.email, req.body.password);
   if (loginSuccess) {
-    res
-      .status(200)
-      .json(new Response(SUCCESS, "loginSuccess", {
+    res.status(200).json(
+      new Response(SUCCESS, "loginSuccess", {
         token: autorizacion.getToken,
-        email: loginSuccess
-      }));
+        email: loginSuccess,
+      })
+    );
   } else {
     res.status(404).json(new Response("FALSE", "Credenciales Incorrectas..."));
   }
@@ -42,7 +49,7 @@ router.post(`/login`, async (req, res) => {
 function findEmail(email) {
   return new Promise(function (myResolve, myReject) {
     connection.query(
-      `SELECT ID,email,password FROM users WHERE email = ?`,
+      `SELECT ID,nombre, email, password FROM users WHERE email = ?`,
       [email],
       function (error, results, fields) {
         if (error) throw error;
@@ -56,17 +63,16 @@ function login(email, pass) {
   return new Promise(async function (myResolve, myReject) {
     const user = await findEmail(email);
     if (!user) {
-      myReject(false)
+      myResolve(false);
     } else {
       if (!decodePassword(pass, user.password)) {
-        myResolve(false)
+        myResolve(false);
       } else {
-        myResolve(email)
+        myResolve(email);
       }
     }
   });
-};
-
+}
 
 function encodePassword(password) {
   return bcrypt.hashSync(password, salt);
@@ -75,6 +81,4 @@ function encodePassword(password) {
 function decodePassword(password, hash) {
   return bcrypt.compareSync(password, hash);
 }
-
-
 module.exports = router;

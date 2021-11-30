@@ -22,12 +22,14 @@ export class Empleado {
 }
 
 export function createForm(empleado: IEmpleado) {
+  console.log(empleado);
+
   return new FormGroup({
     ID: new FormControl(empleado.ID),
     nombre: new FormControl(empleado.nombre, [Validators.required]),
     cedula: new FormControl(empleado.cedula, [Validators.required]),
     email: new FormControl(empleado.email, [Validators.required]),
     telefono: new FormControl(empleado.telefono, [Validators.required]),
-    area: new FormControl(empleado.nombresArea, [Validators.required]),
+    id_area: new FormControl(empleado.nombresArea, [Validators.required]),
   });
 }

@@ -23,14 +23,6 @@ export class AuthService {
     private notificacionService: NotificacionesService
   ) {}
 
-  actionAuth(credenciales: IAuth, accion: string) {
-    if (accion === 'register') {
-      this.register(credenciales.email, credenciales.password);
-    } else {
-      this.login(credenciales.email, credenciales.password);
-    }
-  }
-
   isLogged(): boolean {
     return localStorage.getItem('token') ? true : false;
   }
@@ -51,11 +43,16 @@ export class AuthService {
       );
   }
 
-  register(email: string, password: string) {
-    this.http
-      .post(`${this.API}/register`, { email, password })
+  register(newUser:any) {
+   this.http
+      .post(`${this.API}/register`, newUser)
       .subscribe((response) => {
-        console.log(response);
+        this.notificacionService.alertOk("Registrado","Email registrado con exito.")
+      },
+      (error: HttpErrorResponse) => {
+        if (error.status === 400) {
+          this.notificacionService.alertError("El email ya se encuentra registrado",error.error.msg)
+        }
       });
   }
 

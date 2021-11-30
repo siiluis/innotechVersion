@@ -2,6 +2,7 @@
 # USERS
 CREATE TABLE users (
     ID INT NOT NULL AUTO_INCREMENT,
+    nombre VARCHAR (100),
     email VARCHAR(100),
     password VARCHAR(100),
     fecha_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -230,8 +231,7 @@ CREATE PROCEDURE Empleados()
     BEGIN
         SELECT * ,
         (SELECT areas.nombre FROM areas WHERE areas.ID = empleados.id_area ) AS "nombresArea"
-        FROM empleados
-        INNER JOIN areas ON empleados.id_area = areas.ID;
+        FROM empleados;
     END$$
 
 DELIMITER $$

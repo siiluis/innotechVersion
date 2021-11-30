@@ -22,7 +22,10 @@
     </div>
     <div class="inputForm">
       <label style="color: white" for="area">Area:</label>
-      <input type="text" id="area" formControlName="area" required />
+      <select formControlName="id_area">
+        <option *ngFor="let item of empleadosService.areasLista" [value]="item.ID">{{item.nombre}}</option>
+      </select>
+
     </div>
   </div>
   <div style="text-align: center">

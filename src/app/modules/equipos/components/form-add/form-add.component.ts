@@ -32,7 +32,7 @@ export class FormAddComponent implements OnInit {
       this.equiposService
         .getEquipo(this.idEquipo)
         .subscribe((response: any) => {
-          this.equipoForm = createForm(response.data);
+          this.equipoForm = createForm(response.data[0]);
         });
     }
   }

@@ -5,6 +5,7 @@ import { Empleado, IEmpleado } from './models/empleados.model';
 import { IResponse } from 'src/app/shared/models/response.model';
 import { Router } from '@angular/router';
 import { NotificacionesService } from 'src/app/shared/notificaciones.service';
+import { Area } from './models/areas.mode';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +14,7 @@ export class EmpleadosService {
   readonly APP = 'empleados';
   readonly API = `${environment.URL_API}/${this.APP}`;
   empleadosLista: IEmpleado[] = [];
+  areasLista: Area[] = [];
   empleados: Empleado = new Empleado();
   constructor(
     private http: HttpClient,
@@ -29,6 +31,13 @@ export class EmpleadosService {
       this.router.navigate(['/app/modules/empleados/list']);
     });
   }
+
+  getAreas() {
+    this.http.get(`${environment.URL_API}/areas`).subscribe((response: any) => {
+      this.areasLista = response.data;
+    });
+  }
+
 
   getEmpleados() {
     this.http.get(this.API).subscribe((response: any) => {

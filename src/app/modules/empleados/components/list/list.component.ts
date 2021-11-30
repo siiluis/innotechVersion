@@ -13,6 +13,7 @@ export class ListComponent implements OnInit {
 
   ngOnInit(): void {
     this.empleadosService.getEmpleados();
+
   }
 }
 

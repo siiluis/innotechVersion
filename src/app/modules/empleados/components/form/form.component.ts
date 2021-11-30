@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { EmpleadosService } from '../../empleados.service';
+import { Area } from '../../models/areas.mode';
 import { createForm, Empleado } from '../../models/empleados.model';
 
 @Component({
@@ -15,7 +16,7 @@ export class FormAddComponent implements OnInit {
   btnText: string = 'Guardar';
 
   constructor(
-    private empleadosService: EmpleadosService,
+    public empleadosService: EmpleadosService,
     private route: ActivatedRoute
   ) {
     this.route.params.subscribe((params) => {
@@ -32,9 +33,17 @@ export class FormAddComponent implements OnInit {
       this.empleadosService
         .getEmpleado(this.idEmpleado)
         .subscribe((response: any) => {
-          this.empleadoForm = createForm(response.data);
+          this.empleadoForm = createForm(response.data[0]);
+          const id_area = response.data[0].id_area;
+          this.empleadoForm.patchValue({id_area: id_area})
+
         });
     }
+    this.empleadoForm.get('id_area')?.valueChanges.subscribe(id =>{
+      this.empleadoForm.controls['id_area'].setValue(id);
+
+    })
+    this.empleadosService.getAreas();
   }
 
   add() {
