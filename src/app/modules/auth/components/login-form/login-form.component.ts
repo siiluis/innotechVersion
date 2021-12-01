@@ -13,11 +13,11 @@ export class LoginFormComponent implements OnInit {
 
 
   loginForm = new FormGroup({
-    email: new FormControl('luissarmiento@gmail.com', [
+    email: new FormControl('', [
       Validators.required,
       Validators.email,
     ]),
-    password: new FormControl('12345', [Validators.required]),
+    password: new FormControl('', [Validators.required]),
   });
   constructor(private route: ActivatedRoute, private authService: AuthService) {
 

@@ -424,7 +424,7 @@ CREATE PROCEDURE Asignacion_Equipo(IN _ID INT)
         asignacion_equipos.ID,
         empleados.nombre AS "nombreEmpleado",
         equipos.equipo_serial AS "equipoSerial",
-        IF(equipos.tipo_equipo>"1", "LAPTOP", "DESKTOP") AS "Equipo Tipo"
+        IF(equipos.tipo_equipo>"1", "LAPTOP", "DESKTOP") AS "equipoTipo"
         FROM asignacion_equipos
         INNER JOIN equipos ON asignacion_equipos.id_equipo = equipos.ID
         INNER JOIN empleados ON asignacion_equipos.id_empleado = empleados.ID
@@ -438,7 +438,7 @@ CREATE PROCEDURE Asignaciones_Equipo()
         asignacion_equipos.ID,
         empleados.nombre AS "nombreEmpleado",
         equipos.equipo_serial AS "equipoSerial",
-        IF(equipos.tipo_equipo>"1", "LAPTOP", "DESKTOP") AS "Equipo Tipo"
+        IF(equipos.tipo_equipo>"1", "LAPTOP", "DESKTOP") AS "equipoTipo"
         FROM asignacion_equipos
         INNER JOIN equipos ON asignacion_equipos.id_equipo = equipos.ID
         INNER JOIN empleados ON asignacion_equipos.id_empleado = empleados.ID;
@@ -603,7 +603,7 @@ vista_asigna_equipos_empleado AS
         asignacion_equipos.ID,
         empleados.nombre AS "nombreEmpleado",
         equipos.equipo_serial AS "equipoSerial",
-        IF(equipos.tipo_equipo>"1", "LAPTOP", "DESKTOP") AS "Equipo Tipo"
+        IF(equipos.tipo_equipo>"1", "LAPTOP", "DESKTOP") AS "equipoTipo"
         FROM asignacion_equipos
         INNER JOIN equipos ON asignacion_equipos.id_equipo = equipos.ID
         INNER JOIN empleados ON asignacion_equipos.id_empleado = empleados.ID;

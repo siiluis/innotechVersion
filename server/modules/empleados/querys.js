@@ -39,7 +39,6 @@ const getAll = function (nameTable, id) {
       viewsDb[procedureName],
       function (error, results, fields) {
         if (error) throw error;
-        console.log(results);
         myResolve(results[0]);
       }
     );
@@ -88,6 +87,21 @@ const deleteItem = function (nameTable, id) {
   });
 };
 
+const saveAsignacion = function (asignacion) {
+  return new Promise(function (myResolve, myReject) {
+  connection.query(
+    `INSERT INTO asignacion_equipos SET ? `,
+    asignacion,
+    function (error, results, fields) {
+      if (error) throw error;
+      myResolve(results)
+    }
+  );
+  });
+};
+
+
+
 const getAsignaciones = (view) => {
   return new Promise(function (myResolve, myReject) {
     connection.query(
@@ -107,7 +121,8 @@ module.exports.actions = {
   getItem,
   updateItem,
   deleteItem,
-  getAsignaciones
+  getAsignaciones,
+  saveAsignacion
 
 }
 

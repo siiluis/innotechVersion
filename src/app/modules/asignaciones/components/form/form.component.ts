@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { EmpleadosService } from 'src/app/modules/empleados/empleados.service';
+import { EquiposService } from 'src/app/modules/equipos/equipos.service';
 import { AsignacionesService } from '../../asignaciones.service';
 import { IAsignaciones } from '../../models/asignaciones.model';
 
@@ -9,18 +12,26 @@ import { IAsignaciones } from '../../models/asignaciones.model';
 })
 export class FormAddComponent implements OnInit {
   btnAsignar = 'Asignar';
-  asignaciones: IAsignaciones = {
-    id_asignacion: 1,
-    id_empleado: 1,
-    id_equipo: 1,
-    id_accesorio: 1,
-  };
-  constructor(private asignacionesService: AsignacionesService) {}
 
-  ngOnInit(): void {}
+  asignacionForm = new FormGroup({
+    id_empleado: new FormControl('',Validators.required),
+    id_equipo: new FormControl('',Validators.required),
+  });
 
-  add() {
-    this.asignacionesService.addAsignaciones(this.asignaciones);
-    console.log(this.asignaciones);
+  constructor(
+    private asignacionesService: AsignacionesService,
+    public empleadosService: EmpleadosService,
+    public equiposService: EquiposService
+  ) {}
+
+  ngOnInit(): void {
+    this.empleadosService.getEmpleados();
+    this.equiposService.getEquipos();
+
+  }
+
+  asignar() {
+  this.asignacionesService.addAsignaciones(this.asignacionForm.value);
+
   }
 }

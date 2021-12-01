@@ -13,12 +13,12 @@ export class RegisterformComponent implements OnInit {
   actionAuth: string = 'login';
 
   registerForm = new FormGroup({
-    nombre:new FormControl('Luis',[Validators.required]),
-    email: new FormControl('luis@gmail.com', [
+    nombre:new FormControl('',[Validators.required]),
+    email: new FormControl('', [
       Validators.required,
       Validators.email,
     ]),
-    password: new FormControl('dsdsd', [Validators.required]),
+    password: new FormControl('', [Validators.required]),
   });
   constructor(private authService: AuthService) { }
 

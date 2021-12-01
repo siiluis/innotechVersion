@@ -1,175 +1,26 @@
-<form class="formAsignar" name="form">
+<form class="formAsignar" name="form" [formGroup]="asignacionForm">
   <div>
     <h2 style="color: white; text-align: center">Asignaciones</h2>
     <hr color="white" style="width: 50%" />
   </div>
   <div class="inputForm">
     <label for="selectedTipo">EMPLEADO:</label>
-    <select
-      name=""
-      id="selectedTipo"
-      class="selectForm"
-      style="width: 50%"
-      ng-init="asignacion.selected_tipo"
-      ng-model="asignacion.selected_tipo"
-      required
-    >
-      <option value="1">None</option>
-      <option value="2">Luis Sarmiento</option>
-      <option value="3">Alexandra Triviño</option>
-      <option value="4">Sara Mejía</option>
-    </select>
+    <div class="inputForm">
+      <select formControlName="id_empleado" >
+        <option *ngFor="let item of empleadosService.empleadosLista" [value]="item.ID">{{item.nombre}}</option>
+      </select>
+
+    </div>
   </div>
   <div class="inputForm">
     <label for="selectedTipo">EQUIPO:</label>
-    <select
-      name=""
-      id="selectedTipo"
-      class="selectForm"
-      style="width: 50%"
-      ng-init="asignacion.selected_tipo"
-      ng-model="asignacion.selected_tipo"
-      required
-    >
-      <option value="1">None</option>
-      <option value="2">Laptop Dell</option>
-      <option value="3">Mackbook</option>
+    <select formControlName="id_equipo">
+      <option *ngFor="let item of equiposService.equiposLista" [value]="item.ID">{{item.equipo_serial}}</option>
     </select>
   </div>
-  <div class="accesoriesCheckbox">
-    <div>
-      <label style="color: white" for="">CARGADOR </label>
-      <input
-        type="checkbox"
-        ng-model="asignacion.cargador"
-        ng-true-value="'1'"
-        ng-false-value="'0'"
-      />
-    </div>
-    <div>
-      <label style="color: white" for="">TECLADO </label>
-      <input
-        type="checkbox"
-        ng-model="asignacion.teclado"
-        ng-true-value="'1'"
-        ng-false-value="'0'"
-      />
-    </div>
-    <div>
-      <label style="color: white" for="">MOUSE </label>
-      <input
-        type="checkbox"
-        ng-model="asignacion.mouse "
-        ng-true-value="'1'"
-        ng-false-value="'0'"
-      />
-    </div>
-    <div>
-      <label style="color: white" for="">BASE </label>
-      <input
-        type="checkbox"
-        ng-model="asignacion.base"
-        ng-true-value="'1'"
-        ng-false-value="'0'"
-      />
-    </div>
-    <div>
-      <label style="color: white" for="">PANTALLA </label>
-      <input
-        type="checkbox"
-        ng-model="asignacion.pantalla"
-        ng-true-value="'1'"
-        ng-false-value="'0'"
-      />
-    </div>
-  </div>
-  <div class="inputForm">
-    <label for="selectedTipo">ACCESORIO 1:</label>
-    <select
-      name=""
-      id="selectedTipo"
-      class="selectForm"
-      style="width: 50%"
-      ng-init="asignacion.selected_tipo"
-      ng-model="asignacion.selected_tipo"
-    >
-      <option value="1">Teclado</option>
-      <option value="2">Base</option>
-      <option value="3">Pantalla</option>
-      <option value="4">Mouse</option>
-      <option value="5">Cargador</option>
-    </select>
-  </div>
-  <div class="inputForm">
-    <label for="selectedTipo">ACCESORIO 2:</label>
-    <select
-      name=""
-      id="selectedTipo"
-      class="selectForm"
-      style="width: 50%"
-      ng-init="asignacion.selected_tipo"
-      ng-model="asignacion.selected_tipo"
-    >
-      <option value="1">Teclado</option>
-      <option value="2">Base</option>
-      <option value="3">Pantalla</option>
-      <option value="4">Mouse</option>
-      <option value="5">Cargador</option>
-    </select>
-  </div>
-  <div class="inputForm">
-    <label for="selectedTipo">ACCESORIO 3:</label>
-    <select
-      name=""
-      id="selectedTipo"
-      class="selectForm"
-      style="width: 50%"
-      ng-init="asignacion.selected_tipo"
-      ng-model="asignacion.selected_tipo"
-    >
-      <option value="1">Teclado</option>
-      <option value="2">Base</option>
-      <option value="3">Pantalla</option>
-      <option value="4">Mouse</option>
-      <option value="5">Cargador</option>
-    </select>
-  </div>
-  <div class="inputForm">
-    <label for="selectedTipo">ACCESORIO 4:</label>
-    <select
-      name=""
-      id="selectedTipo"
-      class="selectForm"
-      style="width: 50%"
-      ng-init="asignacion.selected_tipo"
-      ng-model="asignacion.selected_tipo"
-    >
-      <option value="1">Teclado</option>
-      <option value="2">Base</option>
-      <option value="3">Pantalla</option>
-      <option value="4">Mouse</option>
-      <option value="5">Cargador</option>
-    </select>
-  </div>
-    <div class="inputForm">
-    <label for="selectedTipo">ACCESORIO 5:</label>
-    <select
-      name=""
-      id="selectedTipo"
-      class="selectForm"
-      style="width: 50%"
-      ng-init="asignacion.selected_tipo"
-      ng-model="asignacion.selected_tipo"
-    >
-      <option value="1">Teclado</option>
-      <option value="2">Base</option>
-      <option value="3">Pantalla</option>
-      <option value="4">Mouse</option>
-      <option value="5">Cargador</option>
-    </select>
-  </div>
+
   <div class="inputForm" style="margin-top: 3em">
-    <button id="btnFinalizar" ng-disabled="form.$invalid" ng-click="asignar()">
+    <button id="btnFinalizar" (click)="asignar()" [disabled]="!asignacionForm.valid">
       {{ btnAsignar }}
     </button>
   </div>

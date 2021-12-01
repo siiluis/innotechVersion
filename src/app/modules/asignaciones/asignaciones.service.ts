@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { IAsignaciones } from './models/asignaciones.model';
 import { IResponse } from 'src/app/shared/models/response.model';
+import { NotificacionesService } from 'src/app/shared/notificaciones.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -12,19 +14,28 @@ export class AsignacionesService {
   readonly API = `${environment.URL_API}/${this.APP}`;
 
   asignacionesLista: IAsignaciones[] = [];
+
   asignacionesSelect = '';
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private notificacionService: NotificacionesService
+  ) {}
 
   addAsignaciones(asignaciones: IAsignaciones) {
     this.http
       .post<IResponse>(this.API, asignaciones)
       .subscribe((response: IResponse) => {
-        console.log(response.data);
+        this.notificacionService.alertOk('OK', 'Se Asigno Equipo al empleado.');
+        this.router.navigate(['/app/modules/asignaciones/list']);
+        console.log(response);
       });
   }
 
   getAsignaciones() {
     this.http.get<IResponse>(this.API).subscribe((response: IResponse) => {
+      console.log(response.data);
+
       this.asignacionesLista = response.data;
     });
   }

@@ -22,6 +22,10 @@ app.get("/api/asignaciones", async (req, res) => {
   res.json({ data: await actions.getAsignaciones()})
 });
 
+app.post("/api/asignaciones", async (req, res) => {
+  res.json({ data: await actions.saveAsignacion(req.body)})
+});
+
 
 app.post("/api/*", async (req, res) => {
   res.json({ data: await actions.saveItem(req.originalUrl.split("/")[2],req.body) });

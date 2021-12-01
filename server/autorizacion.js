@@ -6,7 +6,7 @@ const key = "4546199cd28425b99f4dc623fcab4dc5abeea55e";
 
 middelwareAuth.use((req, res, next) => {
   const token = req.headers["access-token"];
-/*   if (token) {
+ if (token) {
     jwt.verify(token, key, (err, decoded) => {
       if (err) {
         return res.json({ mensaje: "Token inválida" });
@@ -19,9 +19,8 @@ middelwareAuth.use((req, res, next) => {
     res.status(401).json({
       mensaje: "Token no proveída.",
     });
-  } */
+  }
 
-  next();
 });
 
 const payload = {

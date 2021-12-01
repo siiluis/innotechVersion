@@ -10,7 +10,7 @@ class Asignaciones {}
 export class ListComponent implements OnInit {
   listAsignaciones = [];
 
-  constructor(private AsignacionesService: AsignacionesService) {}
+  constructor(public AsignacionesService: AsignacionesService) {}
 
   ngOnInit(): void {
     this.AsignacionesService.getAsignaciones();
